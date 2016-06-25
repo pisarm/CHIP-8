@@ -12,26 +12,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let bytes: [UInt8] = [
-            0x60, 0x11,
-            0x61, 0x8,
-            0x80, 0x11,
-            0x6A, 0x22,
-            0x8A, 0x6,
-            0x8A, 0xE
-            ]
-        let rom = Rom(bytes: bytes)
-        let emulator = Emulator(rom: rom)
-        print(emulator.registers)
+        if let gameUrl = NSBundle(forClass: self.dynamicType).URLForResource("Maze", withExtension: "ch8"), data = NSData(contentsOfURL: gameUrl) {
+            let rom = Rom(data: data)
+            let emulator = Emulator(rom: rom)
 
-        var count = bytes.count / 2
-
-        while count > 0 {
-            emulator.begin()
-            count = count - 1
-            print(emulator.registers)
+            while true {
+                emulator.cycle()
+//                sleep(1)
+            }
         }
-
-
     }
 }

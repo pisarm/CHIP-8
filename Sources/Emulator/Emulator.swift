@@ -38,7 +38,7 @@ final class Emulator {
     //MARK: Internals
     //TODO: replace arrays with a fixed size arrays
     private (set) var registers: [UInt8] = Array(count: 16, repeatedValue: 0)
-    private (set) var index: UInt16 = 0x0
+    private (set) var index: Opcode.Address = 0x0
     private (set) var pc: Opcode.Address = 0x200
     private (set) var memory: [UInt8] = Array(count: 4096, repeatedValue: 0)
     private (set) var opcode: Opcode.Address = 0x0
@@ -74,8 +74,10 @@ final class Emulator {
     init(rom: Rom) {
         memory.replaceRange(Int(pc)..<Int(pc) + rom.bytes.count, with: rom.bytes)
     }
+}
 
-    //MARK:
+extension Emulator {
+    //MARK: Emulation
     func cycle() {
         let rawOpcode = (Opcode.Address(memory[Int(pc)]) << 8) | (Opcode.Address(memory[Int(pc) + 1]))
 
@@ -129,7 +131,7 @@ final class Emulator {
             registers[Int(x)] = value
 
         case let .AddValue(x, value):
-            let tmp = registers[Int(x)] + value
+            let tmp = registers[Int(x)] &+ value
             registers[Int(x)] = tmp
 
         case let .SetRegister(x, y):
@@ -237,10 +239,23 @@ final class Emulator {
             incrementPC()
         }
 
+        if shouldRedraw {
+            print(screen)
+        }
+
         //TODO: signal redraw using delegate
     }
 
-    func runTimers() {
+    /**
+     */
+    func set(key: Key, pressed: Bool) {
+
+    }
+
+
+    /**
+     */
+    func timerTick() {
         if delayTimer > 0 {
             delayTimer -= 1
         }

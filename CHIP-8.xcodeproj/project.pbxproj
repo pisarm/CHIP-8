@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E40F4BC71D1F118000A471FC /* Maze.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E40F4BC61D1F118000A471FC /* Maze.ch8 */; };
 		E4363E8B1D1B34F600776047 /* EmulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4363E8A1D1B34F600776047 /* EmulatorTests.swift */; };
 		E44A9A321D14AD4100B9139F /* RawOpcodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A9A311D14AD4100B9139F /* RawOpcodeTests.swift */; };
 		E47F4E701D18957F001AF3EC /* Rom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47F4E6F1D18957F001AF3EC /* Rom.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E40F4BC61D1F118000A471FC /* Maze.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Maze.ch8; sourceTree = "<group>"; };
 		E4363E8A1D1B34F600776047 /* EmulatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmulatorTests.swift; sourceTree = "<group>"; };
 		E44A9A311D14AD4100B9139F /* RawOpcodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawOpcodeTests.swift; sourceTree = "<group>"; };
 		E47F4E6F1D18957F001AF3EC /* Rom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rom.swift; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		E4F3D90A1D11EB2100899F56 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E40F4BC61D1F118000A471FC /* Maze.ch8 */,
 				E4F3D9131D11ECAE00899F56 /* Assets.xcassets */,
 				E4F3D9111D11ECA700899F56 /* LaunchScreen.storyboard */,
 			);
@@ -213,6 +216,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E40F4BC71D1F118000A471FC /* Maze.ch8 in Resources */,
 				E4F3D9141D11ECAE00899F56 /* Assets.xcassets in Resources */,
 				E4F3D9121D11ECA700899F56 /* LaunchScreen.storyboard in Resources */,
 			);
