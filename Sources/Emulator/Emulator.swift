@@ -80,11 +80,10 @@ extension Emulator {
     //MARK: Emulation
     func cycle() {
         let rawOpcode = (Opcode.Address(memory[Int(pc)]) << 8) | (Opcode.Address(memory[Int(pc) + 1]))
-
         guard let opcode = Opcode(rawOpcode: rawOpcode) else {
             fatalError()
         }
-
+        print(opcode)
         var shouldIncrementPC = true
         var shouldRedraw = false
 
@@ -192,16 +191,24 @@ extension Emulator {
             shouldRedraw = true
 
         case let .SkipIfKeyPressed(x):
-            break
+            if keypad[Int(x)] == true {
+                incrementPC()
+            }
 
         case let .SkipIfKeyNotPressed(x):
-            break
+            if keypad[Int(x)] == false {
+                incrementPC()
+            }
 
         case let .StoreDelayTimer(x):
             registers[Int(x)] = delayTimer
 
         case let .StoreKeyPress(x):
-            break
+            if let key = lastPressedKey {
+                registers[Int(x)] = key.rawValue
+            } else {
+                //TODO: signal via delegate - no redrawing of screen
+            }
 
         case let .SetDelayTimer(x):
             delayTimer = registers[Int(x)]
@@ -215,7 +222,7 @@ extension Emulator {
             index += value
 
         case let .SetIndexFontCharacter(x):
-            break
+            index = UInt16(registers[Int(x)] * 5)
 
         case let .StoreBCD(x):
             let xValue = registers[Int(x)]
@@ -240,18 +247,18 @@ extension Emulator {
         }
 
         if shouldRedraw {
-            print(screen)
+////            print("\n\(screen)")
+//            for (index, element) in screen.enumerate() {
+//                print(element, separator: ",", terminator: "")
+//                if index % 32 == 0 && index != 0 {
+//                    print("\n")
+//
+//                }
+//            }
         }
 
         //TODO: signal redraw using delegate
     }
-
-    /**
-     */
-    func set(key: Key, pressed: Bool) {
-
-    }
-
 
     /**
      */
@@ -265,6 +272,16 @@ extension Emulator {
             if soundTimer == 0 {
                 //TODO: signal beep using delegate
             }
+        }
+    }
+
+    /**
+     */
+    func set(key: Key, pressed: Bool) {
+        keypad[Int(key.rawValue)] = pressed
+
+        if pressed {
+            lastPressedKey = key
         }
     }
 }
