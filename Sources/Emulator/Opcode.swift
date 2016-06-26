@@ -54,107 +54,112 @@ enum Opcode {
     /**
      Opcode *3XNN*
 
-     Skips the next instruction if VX equals NN.
+     Skips the next instruction if register X equals NN.
      */
-    case SkipIfEqualValue(vx: Register, value: Constant)
+    case SkipIfEqualValue(x: Register, value: Constant)
 
     /**
      Opcode *4XNN*
 
-     Skips the next instruction if VX doesn't equal NN.
+     Skips the next instruction if register X doesn't equal NN.
      */
-    case SkipIfNotEqualValue(vx: Register, value: Constant)
+    case SkipIfNotEqualValue(x: Register, value: Constant)
 
     /**
      Opcode *5XY0*
 
-     Skips the next instruction if VX equals VY.
+     Skips the next instruction if register X equals register Y.
      */
-    case SkipIfRegisterEqual(vx: Register, vy: Register)
+    case SkipIfRegisterEqual(x: Register, y: Register)
 
     /**
      Opcode *6XNN*
 
-     Sets VX to NN.
+     Sets register X to NN.
      */
-    case SetValue(vx: Register, value: Constant)
+    case SetValue(x: Register, value: Constant)
 
     /**
      Opcode *7XNN*
 
-     Adds NN to VX.
+     Adds NN to register X.
      */
-    case AddValue(vx: Register, value: Constant)
+    case AddValue(x: Register, value: Constant)
 
     /**
      Opcode *8XY0*
 
-     Sets VX to the Value of VY.
+     Sets register X to the value of register Y.
      */
-    case SetRegister(vx: Register, vy: Register)
+    case SetRegister(x: Register, y: Register)
 
     /**
      Opcode *8XY1*
 
-     Sets VX to VX | VY.
+     Sets register X to register X | register Y.
      */
-    case OrRegister(vx: Register, vy: Register)
+    case OrRegister(x: Register, y: Register)
 
     /**
      Opcode *8XY2*
 
-     Sets VX to VX & VY.
+     Sets register X to register X & register Y.
      */
-    case AndRegister(vx: Register, vy: Register)
+    case AndRegister(x: Register, y: Register)
 
     /**
      Opcode *8XY3*
 
-     Sets VX to VX ^ VY.
+     Sets register X to register X ^ register Y.
      */
-    case XorRegister(vx: Register, vy: Register)
+    case XorRegister(x: Register, y: Register)
 
     /**
      Opcode *8XY4*
 
-     Adds VY to VX. VF is set to 1 when there's a carry, and 0 when there isn't.
+     Adds register Y to register X. Register F is set to 1 when there's a carry, and 0 when there
+     isn't.
      */
-    case AddRegister(vx: Register, vy: Register)
+    case AddRegister(x: Register, y: Register)
 
     /**
      Opcode *8XY5*
 
-     VY is subtracted from VX. VF is set to 0 when there's a borrow, and 1 when there isn't.
+     Register Y is subtracted from register X. Register F is set to 0 when there's a borrow, and 1
+     when there isn't.
      */
-    case SubtractYFromX(vx: Register, vy: Register)
+    case SubtractYFromX(x: Register, y: Register)
 
     /**
      Opcode *8XY6*
 
-     Shifts VX right by one. VF is set to the value of the least significant bit of VX before the shift.
+     Shifts register X right by one. Register F is set to the value of the least significant bit of
+     register X before the shift.
      */
-    case ShiftRight(vx: Register)
+    case ShiftRight(x: Register)
 
     /**
      Opcode *8XY7*
 
-     Sets VX to VY minus VX. VF is set to 0 when there's a borrow, and 1 when there isn't.
+     Sets register X to register Y minus register X. Register F is set to 0 when there's a borrow,
+     and 1 when there isn't.
      */
-    case SubtractXFromY(vx: Register, vy: Register)
+    case SubtractXFromY(x: Register, y: Register)
 
     /**
      Opcode *8XYE*
 
-     Shifts VX left by one. VF is set to the value of the most significant bit of VX before the shift.
+     Shifts register X left by one. Register F is set to the value of the most significant bit of
+     register X before the shift.
      */
-    case ShiftLeft(vx: Register)
+    case ShiftLeft(x: Register)
 
     /**
      Opcode *9XY0*
 
-     Skips the next instruction if VX doesn't equal VY
+     Skips the next instruction if register X doesn't equal register Y
      */
-    case SkipIfNotEqualRegister(vx: Register, vy: Register)
+    case SkipIfNotEqualRegister(x: Register, y: Register)
 
     /**
      Opcode *ANNN*
@@ -171,9 +176,9 @@ enum Opcode {
     /**
      Opcode *CXNN*
 
-     Sets VX to the result of a bitwise AND operation on a random number and NN.
+     Sets register X to the result of a bitwise AND operation on a random number and NN.
      */
-    case AndRandom(vx: Register, value: Constant)
+    case AndRandom(x: Register, value: Constant)
 
     /**
      Opcode *DXYN*
@@ -182,99 +187,103 @@ enum Opcode {
 
      Wraps around the screen.
 
-     If when drawn, clears a pixel, register VF is set to 1 otherwise it is zero.
+     If when drawn, clears a pixel, register F is set to 1 otherwise it is zero.
 
      All drawing is XOR drawing (i.e. it toggles the screen pixels).
 
-     Sprites are drawn starting at position VX, VY.
+     Sprites are drawn starting at position register X, register Y.
 
      N is the number of 8bit rows that need to be drawn.
 
-     If N is greater than 1, second line continues at position VX, VY+1, and so on.
+     If N is greater than 1, second line continues at position register X, register Y+1, and so on.
      */
-    case Draw(vx: Register, vy: Register, rows: Constant)
+    case Draw(x: Register, y: Register, rows: Constant)
 
     /**
      Opcode *EX9E*
 
-     Skips the next instruction if the key stored in VX is pressed.
+     Skips the next instruction if the key stored in register X is pressed.
      */
-    case SkipIfKeyPressed(vx: Register)
+    case SkipIfKeyPressed(x: Register)
 
     /**
      Opcode *EXA1*
 
-     Skips the next instruction if the key stored in VX isn't pressed.
+     Skips the next instruction if the key stored in register X isn't pressed.
      */
-    case SkipIfKeyNotPressed(vx: Register)
+    case SkipIfKeyNotPressed(x: Register)
 
     /**
      Opcode *FX07*
 
-     Sets VX to the value of the delay timer.
+     Sets register X to the value of the delay timer.
      */
-    case StoreDelayTimer(vx: Register)
+    case StoreDelayTimer(x: Register)
 
     /**
      Opcode *FX0A*
 
-     Waits for a key press and stores it in VX.
+     Waits for a key press and stores it in register X.
      */
-    case StoreKeyPress(vx: Register)
+    case StoreKeyPress(x: Register)
 
     /**
      Opcode *FX0A*
 
-     Set the delay timer to the value of VX:
+     Set the delay timer to the value of register X.
      */
-    case SetDelayTimer(vx: Register)
+    case SetDelayTimer(x: Register)
 
     /**
      Opcode *FX18*
 
-     Sets the sound timer to the value of VX:
+     Sets the sound timer to the value of register X.
      */
-    case SetSoundTimer(vx: Register)
+    case SetSoundTimer(x: Register)
 
     /**
      Opcode *FX1E*
 
-     VF is set to 1 when range overflow (I+VX>0xFFF), and 0 when there isn't. This is undocumented
-     feature of the CHIP-8 and used by Spacefight 2091! game.
+     Register F is set to 1 when range overflow (I+x>0xFFF), and 0 when there isn't. This is an
+     undocumented feature of the CHIP-8 and used by Spacefight 2091! game.
      */
-    case AddIndex(vx: Register)
+    case AddIndex(x: Register)
 
     /**
      Opcode *FX29*
 
-     Sets I to the location of the sprite for the character in VX.
+     Sets register I to the location of the sprite for the character in register X.
      */
-    case SetIndexFontCharacter(vx: Register)
+    case SetIndexFontCharacter(x: Register)
 
     /**
      Opcode *FX33*
 
-     Stores the binary-coded decimal representation of VX, with the most significant of three digits
-     at the address in I, the middle digit at I plus 1, and the least significant digit at I plus 2.
+     Stores the binary-coded decimal representation of register X, with the most significant of
+     three digits at the address in register I, the middle digit at register I plus 1, and the least
+     significant digit at register I plus 2.
 
-     In other words, takes the decimal representation of VX, places the hundreds digit in memory at
-     location in I, the tens digit at location I+1, and the ones digit at location I+2.
+     In other words, takes the decimal representation of register X, places the hundreds digit in
+     memory at location in register I, the tens digit at location register I+1, and the ones digit
+     at location register I+2.
      */
-    case StoreBCD(vx: Register)
+    case StoreBCD(x: Register)
 
     /**
      Opcode *FX55*
 
-     Stores V0 to VX (including VX) in memory starting at address I.
+     Stores register 0 to register X (including register X) in memory starting at the address stored
+     in register I.
      */
-    case WriteMemory(vx: Register)
+    case WriteMemory(x: Register)
 
     /**
      Opcode *FX65*
 
-     Fills V0 to VX (including VX) with values from memory starting at address I.
+     Fills register 0 to register X (including register X) with values from memory starting at the
+     address stored in register I.
      */
-    case ReadMemory(vx: Register)
+    case ReadMemory(x: Register)
 
     /**
 
@@ -297,50 +306,50 @@ enum Opcode {
         case let .CallSubroutine(address):
             return (0x2 << 12) | address
 
-        case let .SkipIfEqualValue(vx, value):
-            return (0x3 << 12) | (UInt16(vx) << 8) | UInt16(value)
+        case let .SkipIfEqualValue(x, value):
+            return (0x3 << 12) | (UInt16(x) << 8) | UInt16(value)
 
-        case let .SkipIfNotEqualValue(vx, value):
-            return (0x4 << 12) | (UInt16(vx) << 8) | UInt16(value)
+        case let .SkipIfNotEqualValue(x, value):
+            return (0x4 << 12) | (UInt16(x) << 8) | UInt16(value)
 
-        case let .SkipIfRegisterEqual(vx, vy):
-            return (0x5 << 12) | (UInt16(vx) << 8) | (UInt16(vy) << 4) | 0x0
+        case let .SkipIfRegisterEqual(x, y):
+            return (0x5 << 12) | (UInt16(x) << 8) | (UInt16(y) << 4)
 
-        case let .SetValue(vx, value):
-            return (0x6 << 12) | (UInt16(vx) << 8) | UInt16(value)
+        case let .SetValue(x, value):
+            return (0x6 << 12) | (UInt16(x) << 8) | UInt16(value)
 
-        case let .AddValue(vx, value):
-            return (0x7 << 12) | (UInt16(vx) << 8) | UInt16(value)
+        case let .AddValue(x, value):
+            return (0x7 << 12) | (UInt16(x) << 8) | UInt16(value)
 
-        case let .SetRegister(vx, vy):
-            return (0x8 << 12) | (UInt16(vx) << 8) | (UInt16(vy) << 4) | 0x0
+        case let .SetRegister(x, y):
+            return (0x8 << 12) | (UInt16(x) << 8) | (UInt16(y) << 8)
 
-        case let .OrRegister(vx, vy):
-            return (0x8 << 12) | (UInt16(vx) << 8) | (UInt16(vy) << 4) | 0x1
+        case let .OrRegister(x, y):
+            return (0x8 << 12) | (UInt16(x) << 8) | (UInt16(y) << 8) | 0x1
 
-        case let .AndRegister(vx, vy):
-            return (0x8 << 12) | (UInt16(vx) << 8) | (UInt16(vy) << 4) | 0x2
+        case let .AndRegister(x, y):
+            return (0x8 << 12) | (UInt16(x) << 8) | (UInt16(y) << 8) | 0x2
 
-        case let .XorRegister(vx, vy):
-            return (0x8 << 12) | (UInt16(vx) << 8) | (UInt16(vy) << 4) | 0x3
+        case let .XorRegister(x, y):
+            return (0x8 << 12) | (UInt16(x) << 8) | (UInt16(y) << 8) | 0x3
 
-        case let .AddRegister(vx, vy):
-            return (0x8 << 12) | (UInt16(vx) << 8) | (UInt16(vy) << 4) | 0x4
+        case let .AddRegister(x, y):
+            return (0x8 << 12) | (UInt16(x) << 8) | (UInt16(y) << 8) | 0x4
 
-        case let .SubtractYFromX(vx, vy):
-            return (0x8 << 12) | (UInt16(vx) << 8) | (UInt16(vy) << 4) | 0x5
+        case let .SubtractYFromX(x, y):
+            return (0x8 << 12) | (UInt16(x) << 8) | (UInt16(y) << 8) | 0x5
 
-        case let .ShiftRight(vx):
-            return (0x8 << 12) | (UInt16(vx) << 8) | 0x0 | 0x6
+        case let .ShiftRight(x):
+            return (0x8 << 12) | (UInt16(x) << 8) | 0x6
 
-        case let .SubtractXFromY(vx, vy):
-            return (0x8 << 12) | (UInt16(vx) << 8) | (UInt16(vy) << 4) | 0x7
+        case let .SubtractXFromY(x, y):
+            return (0x8 << 12) | (UInt16(x) << 8) | (UInt16(y) << 8) | 0x7
 
-        case let .ShiftLeft(vx):
-            return (0x8 << 12) | (UInt16(vx) << 8) | 0x0 | 0xE
+        case let .ShiftLeft(x):
+            return (0x8 << 12) | (UInt16(x) << 8) | 0xE
 
-        case let .SkipIfNotEqualRegister(vx, vy):
-            return (0x9 << 12) | (UInt16(vx) << 8) | (UInt16(vy) << 4) | 0x0
+        case let .SkipIfNotEqualRegister(x, y):
+            return (0x9 << 12) | (UInt16(x) << 8) | (UInt16(y) << 8)
 
         case let .SetIndex(address):
             return (0xA << 12) | address
@@ -348,44 +357,44 @@ enum Opcode {
         case let .JumpRelative(address):
             return (0xB << 12) | address
 
-        case let .AndRandom(vx, value):
-            return (0xC << 12) | (UInt16(vx) << 8) | UInt16(value)
+        case let .AndRandom(x, value):
+            return (0xC << 12) | (UInt16(x) << 8) | UInt16(value)
 
-        case let .Draw(vx, vy, rows):
-            return (0xD << 12) | (UInt16(vx) << 8) | (UInt16(vy) << 4) | UInt16(rows)
+        case let .Draw(x, vy, rows):
+            return (0xD << 12) | (UInt16(x) << 8) | (UInt16(vy) << 8) | UInt16(rows)
 
-        case let .SkipIfKeyPressed(vx):
-            return (0xE << 12) | (UInt16(vx) << 8) | 0x9E
+        case let .SkipIfKeyPressed(x):
+            return (0xE << 12) | (UInt16(x) << 8) | 0x9E
 
-        case let .SkipIfKeyNotPressed(vx):
-            return (0xE << 12) | (UInt16(vx) << 8) | 0xA1
+        case let .SkipIfKeyNotPressed(x):
+            return (0xE << 12) | (UInt16(x) << 8) | 0xA1
 
-        case let .StoreDelayTimer(vx):
-            return (0xF << 12) | (UInt16(vx) << 8) | 0x7
+        case let .StoreDelayTimer(x):
+            return (0xF << 12) | (UInt16(x) << 8) | 0x7
 
-        case let .StoreKeyPress(vx):
-            return (0xF << 12) | (UInt16(vx) << 8) | 0xA
+        case let .StoreKeyPress(x):
+            return (0xF << 12) | (UInt16(x) << 8) | 0xA
 
-        case let .SetDelayTimer(vx):
-            return (0xF << 12) | (UInt16(vx) << 8) | 0x15
+        case let .SetDelayTimer(x):
+            return (0xF << 12) | (UInt16(x) << 8) | 0x15
 
-        case let .SetSoundTimer(vx):
-            return (0xF << 12) | (UInt16(vx) << 8) | 0x18
+        case let .SetSoundTimer(x):
+            return (0xF << 12) | (UInt16(x) << 8) | 0x18
 
-        case let .AddIndex(vx):
-            return (0xF << 12) | (UInt16(vx) << 8) | 0x1E
+        case let .AddIndex(x):
+            return (0xF << 12) | (UInt16(x) << 8) | 0x1E
 
-        case let .SetIndexFontCharacter(vx):
-            return (0xF << 12) | (UInt16(vx) << 8) | 0x29
+        case let .SetIndexFontCharacter(x):
+            return (0xF << 12) | (UInt16(x) << 8) | 0x29
 
-        case let .StoreBCD(vx):
-            return (0xF << 12) | (UInt16(vx) << 8) | 0x33
+        case let .StoreBCD(x):
+            return (0xF << 12) | (UInt16(x) << 8) | 0x33
 
-        case let .WriteMemory(vx):
-            return (0xF << 12) | (UInt16(vx) << 8) | 0x55
+        case let .WriteMemory(x):
+            return (0xF << 12) | (UInt16(x) << 8) | 0x55
 
-        case let .ReadMemory(vx):
-            return (0xF << 12) | (UInt16(vx) << 8) | 0x65
+        case let .ReadMemory(x):
+            return (0xF << 12) | (UInt16(x) << 8) | 0x65
 
         }
     }
@@ -410,50 +419,50 @@ enum Opcode {
         case (0x2, _, _, _):
             self = .CallSubroutine(address: rawOpcode & 0xFFF)
 
-        case let (0x3, vx, _, _):
-            self = .SkipIfEqualValue(vx: vx, value: Constant(rawOpcode & 0xFF))
+        case let (0x3, x, _, _):
+            self = .SkipIfEqualValue(x: x, value: Constant(rawOpcode & 0xFF))
 
-        case let (0x4, vx, _, _):
-            self = .SkipIfNotEqualValue(vx: vx, value: Constant(rawOpcode & 0xFF))
+        case let (0x4, x, _, _):
+            self = .SkipIfNotEqualValue(x: x, value: Constant(rawOpcode & 0xFF))
 
-        case let (0x5, vx, vy, _):
-            self = .SkipIfRegisterEqual(vx: vx, vy: vy)
+        case let (0x5, x, y, _):
+            self = .SkipIfRegisterEqual(x: x, y: y)
 
-        case let (0x6, vx, _, _):
-            self = .SetValue(vx: vx, value: Constant(rawOpcode & 0xFF))
+        case let (0x6, x, _, _):
+            self = .SetValue(x: x, value: Constant(rawOpcode & 0xFF))
 
-        case let (0x7, vx, _, _):
-            self = .AddValue(vx: vx, value: Constant(rawOpcode & 0xFF))
+        case let (0x7, x, _, _):
+            self = .AddValue(x: x, value: Constant(rawOpcode & 0xFF))
 
-        case let (0x8, vx, vy, 0x0):
-            self = .SetRegister(vx: vx, vy: vy)
+        case let (0x8, x, y, 0x0):
+            self = .SetRegister(x: x, y: y)
 
-        case let (0x8, vx, vy, 0x1):
-            self = .OrRegister(vx: vx, vy: vy)
+        case let (0x8, x, y, 0x1):
+            self = .OrRegister(x: x, y: y)
 
-        case let (0x8, vx, vy, 0x2):
-            self = .AndRegister(vx: vx, vy: vy)
+        case let (0x8, x, y, 0x2):
+            self = .AndRegister(x: x, y: y)
 
-        case let (0x8, vx, vy, 0x3):
-            self = .XorRegister(vx: vx, vy: vy)
+        case let (0x8, x, y, 0x3):
+            self = .XorRegister(x: x, y: y)
 
-        case let (0x8, vx, vy, 0x4):
-            self = .AddRegister(vx: vx, vy: vy)
+        case let (0x8, x, y, 0x4):
+            self = .AddRegister(x: x, y: y)
 
-        case let (0x8, vx, vy, 0x5):
-            self = .SubtractYFromX(vx: vx, vy: vy)
+        case let (0x8, x, y, 0x5):
+            self = .SubtractYFromX(x: x, y: y)
 
-        case let (0x8, vx, _, 0x6):
-            self = .ShiftRight(vx: vx)
+        case let (0x8, x, _, 0x6):
+            self = .ShiftRight(x: x)
 
-        case let (0x8, vx, vy, 0x7):
-            self = .SubtractXFromY(vx: vx, vy: vy)
+        case let (0x8, x, y, 0x7):
+            self = .SubtractXFromY(x: x, y: y)
 
-        case let (0x8, vx, _, 0xE):
-            self = .ShiftLeft(vx: vx)
+        case let (0x8, x, _, 0xE):
+            self = .ShiftLeft(x: x)
 
-        case let (0x9, vx, vy, 0x0):
-            self = .SkipIfNotEqualRegister(vx: vx, vy: vy)
+        case let (0x9, x, y, 0x0):
+            self = .SkipIfNotEqualRegister(x: x, y: y)
 
         case (0xA, _, _, _):
             self = .SetIndex(address: rawOpcode & 0xFFF)
@@ -461,44 +470,44 @@ enum Opcode {
         case (0xB, _, _, _):
             self = .JumpRelative(address: rawOpcode & 0xFFF)
 
-        case let (0xC, vx, _, _):
-            self = .AndRandom(vx: vx, value: Constant(rawOpcode & 0xFF))
+        case let (0xC, x, _, _):
+            self = .AndRandom(x: x, value: Constant(rawOpcode & 0xFF))
 
-        case let (0xD, vx, vy, rows):
-            self = .Draw(vx: vx, vy: vy, rows: rows)
+        case let (0xD, x, y, rows):
+            self = .Draw(x: x, y: y, rows: rows)
 
-        case let (0xE, vx, 0x9, 0xE):
-            self = .SkipIfKeyPressed(vx: vx)
+        case let (0xE, x, 0x9, 0xE):
+            self = .SkipIfKeyPressed(x: x)
+
+        case let (0xE, x, 0xA, 0x1):
+            self = .SkipIfKeyNotPressed(x: x)
+
+        case let (0xF, x, 0x0, 0x7):
+            self = .StoreDelayTimer(x: x)
             
-        case let (0xE, vx, 0xA, 0x1):
-            self = .SkipIfKeyNotPressed(vx: vx)
+        case let (0xF, x, 0x0, 0xA):
+            self = .StoreKeyPress(x: x)
             
-        case let (0xF, vx, 0x0, 0x7):
-            self = .StoreDelayTimer(vx: vx)
+        case let (0xF, x, 0x1, 0x5):
+            self = .SetDelayTimer(x: x)
             
-        case let (0xF, vx, 0x0, 0xA):
-            self = .StoreKeyPress(vx: vx)
+        case let (0xF, x, 0x1, 0x8):
+            self = .SetSoundTimer(x: x)
             
-        case let (0xF, vx, 0x1, 0x5):
-            self = .SetDelayTimer(vx: vx)
+        case let (0xF, x, 0x1, 0xE):
+            self = .AddIndex(x: x)
             
-        case let (0xF, vx, 0x1, 0x8):
-            self = .SetSoundTimer(vx: vx)
+        case let (0xF, x, 0x2, 0x9):
+            self = .SetIndexFontCharacter(x: x)
             
-        case let (0xF, vx, 0x1, 0xE):
-            self = .AddIndex(vx: vx)
+        case let (0xF, x, 0x3, 0x3):
+            self = .StoreBCD(x: x)
             
-        case let (0xF, vx, 0x2, 0x9):
-            self = .SetIndexFontCharacter(vx: vx)
+        case let (0xF, x, 0x5, 0x5):
+            self = .WriteMemory(x: x)
             
-        case let (0xF, vx, 0x3, 0x3):
-            self = .StoreBCD(vx: vx)
-            
-        case let (0xF, vx, 0x5, 0x5):
-            self = .WriteMemory(vx: vx)
-            
-        case let (0xF, vx, 0x6, 0x5):
-            self = .ReadMemory(vx: vx)
+        case let (0xF, x, 0x6, 0x5):
+            self = .ReadMemory(x: x)
             
         default:
             return nil
