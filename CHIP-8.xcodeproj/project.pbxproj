@@ -14,6 +14,10 @@
 		E439E3B91D216A3600B4F53C /* Trip8.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E439E3B81D216A3600B4F53C /* Trip8.ch8 */; };
 		E44A9A321D14AD4100B9139F /* RawOpcodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A9A311D14AD4100B9139F /* RawOpcodeTests.swift */; };
 		E45443371D21BF1F005E0310 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45443361D21BF1F005E0310 /* Timer.swift */; };
+		E473E2951D2306EB00F756C7 /* Fishie.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E473E2911D2306EB00F756C7 /* Fishie.ch8 */; };
+		E473E2961D2306EB00F756C7 /* Framed1.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E473E2921D2306EB00F756C7 /* Framed1.ch8 */; };
+		E473E2971D2306EB00F756C7 /* Framed2.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E473E2931D2306EB00F756C7 /* Framed2.ch8 */; };
+		E473E2981D2306EB00F756C7 /* ZeroDemo.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E473E2941D2306EB00F756C7 /* ZeroDemo.ch8 */; };
 		E47F4E701D18957F001AF3EC /* Rom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47F4E6F1D18957F001AF3EC /* Rom.swift */; };
 		E47F4E721D189B44001AF3EC /* RomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47F4E711D189B44001AF3EC /* RomTests.swift */; };
 		E4DCE3E01D225F8000409FA9 /* HiresWormV4.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E4DCE3DF1D225F8000409FA9 /* HiresWormV4.ch8 */; };
@@ -44,6 +48,10 @@
 		E439E3B81D216A3600B4F53C /* Trip8.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Trip8.ch8; sourceTree = "<group>"; };
 		E44A9A311D14AD4100B9139F /* RawOpcodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawOpcodeTests.swift; sourceTree = "<group>"; };
 		E45443361D21BF1F005E0310 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		E473E2911D2306EB00F756C7 /* Fishie.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fishie.ch8; sourceTree = "<group>"; };
+		E473E2921D2306EB00F756C7 /* Framed1.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Framed1.ch8; sourceTree = "<group>"; };
+		E473E2931D2306EB00F756C7 /* Framed2.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Framed2.ch8; sourceTree = "<group>"; };
+		E473E2941D2306EB00F756C7 /* ZeroDemo.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZeroDemo.ch8; sourceTree = "<group>"; };
 		E47F4E6F1D18957F001AF3EC /* Rom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rom.swift; sourceTree = "<group>"; };
 		E47F4E711D189B44001AF3EC /* RomTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RomTests.swift; sourceTree = "<group>"; };
 		E4DCE3DF1D225F8000409FA9 /* HiresWormV4.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = HiresWormV4.ch8; sourceTree = "<group>"; };
@@ -130,6 +138,10 @@
 		E4F3D90A1D11EB2100899F56 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E473E2911D2306EB00F756C7 /* Fishie.ch8 */,
+				E473E2921D2306EB00F756C7 /* Framed1.ch8 */,
+				E473E2931D2306EB00F756C7 /* Framed2.ch8 */,
+				E473E2941D2306EB00F756C7 /* ZeroDemo.ch8 */,
 				E4DCE3E11D2261F300409FA9 /* Clock.ch8 */,
 				E4DCE3DF1D225F8000409FA9 /* HiresWormV4.ch8 */,
 				E439E3B81D216A3600B4F53C /* Trip8.ch8 */,
@@ -243,14 +255,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E473E2951D2306EB00F756C7 /* Fishie.ch8 in Resources */,
 				E40F4BC71D1F118000A471FC /* Maze.ch8 in Resources */,
+				E473E2981D2306EB00F756C7 /* ZeroDemo.ch8 in Resources */,
 				E4F3D9141D11ECAE00899F56 /* Assets.xcassets in Resources */,
 				E439E3B71D2168FF00B4F53C /* Sierpinski.ch8 in Resources */,
 				E439E3B91D216A3600B4F53C /* Trip8.ch8 in Resources */,
 				E439E3B51D2143B500B4F53C /* ParticleDemo.ch8 in Resources */,
+				E473E2961D2306EB00F756C7 /* Framed1.ch8 in Resources */,
 				E4F3D9121D11ECA700899F56 /* LaunchScreen.storyboard in Resources */,
 				E4DCE3E21D2261F300409FA9 /* Clock.ch8 in Resources */,
 				E4DCE3E01D225F8000409FA9 /* HiresWormV4.ch8 in Resources */,
+				E473E2971D2306EB00F756C7 /* Framed2.ch8 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
