@@ -9,9 +9,15 @@
 /* Begin PBXBuildFile section */
 		E40F4BC71D1F118000A471FC /* Maze.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E40F4BC61D1F118000A471FC /* Maze.ch8 */; };
 		E4363E8B1D1B34F600776047 /* EmulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4363E8A1D1B34F600776047 /* EmulatorTests.swift */; };
+		E439E3B51D2143B500B4F53C /* ParticleDemo.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E439E3B41D2143B500B4F53C /* ParticleDemo.ch8 */; };
+		E439E3B71D2168FF00B4F53C /* Sierpinski.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E439E3B61D2168FF00B4F53C /* Sierpinski.ch8 */; };
+		E439E3B91D216A3600B4F53C /* Trip8.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E439E3B81D216A3600B4F53C /* Trip8.ch8 */; };
 		E44A9A321D14AD4100B9139F /* RawOpcodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A9A311D14AD4100B9139F /* RawOpcodeTests.swift */; };
+		E45443371D21BF1F005E0310 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45443361D21BF1F005E0310 /* Timer.swift */; };
 		E47F4E701D18957F001AF3EC /* Rom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47F4E6F1D18957F001AF3EC /* Rom.swift */; };
 		E47F4E721D189B44001AF3EC /* RomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47F4E711D189B44001AF3EC /* RomTests.swift */; };
+		E4DCE3E01D225F8000409FA9 /* HiresWormV4.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E4DCE3DF1D225F8000409FA9 /* HiresWormV4.ch8 */; };
+		E4DCE3E21D2261F300409FA9 /* Clock.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E4DCE3E11D2261F300409FA9 /* Clock.ch8 */; };
 		E4F3D90F1D11EC7000899F56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3D90D1D11EC7000899F56 /* AppDelegate.swift */; };
 		E4F3D9101D11EC7000899F56 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3D90E1D11EC7000899F56 /* ViewController.swift */; };
 		E4F3D9121D11ECA700899F56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F3D9111D11ECA700899F56 /* LaunchScreen.storyboard */; };
@@ -33,9 +39,15 @@
 /* Begin PBXFileReference section */
 		E40F4BC61D1F118000A471FC /* Maze.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Maze.ch8; sourceTree = "<group>"; };
 		E4363E8A1D1B34F600776047 /* EmulatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmulatorTests.swift; sourceTree = "<group>"; };
+		E439E3B41D2143B500B4F53C /* ParticleDemo.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ParticleDemo.ch8; sourceTree = "<group>"; };
+		E439E3B61D2168FF00B4F53C /* Sierpinski.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sierpinski.ch8; sourceTree = "<group>"; };
+		E439E3B81D216A3600B4F53C /* Trip8.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Trip8.ch8; sourceTree = "<group>"; };
 		E44A9A311D14AD4100B9139F /* RawOpcodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawOpcodeTests.swift; sourceTree = "<group>"; };
+		E45443361D21BF1F005E0310 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		E47F4E6F1D18957F001AF3EC /* Rom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rom.swift; sourceTree = "<group>"; };
 		E47F4E711D189B44001AF3EC /* RomTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RomTests.swift; sourceTree = "<group>"; };
+		E4DCE3DF1D225F8000409FA9 /* HiresWormV4.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = HiresWormV4.ch8; sourceTree = "<group>"; };
+		E4DCE3E11D2261F300409FA9 /* Clock.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Clock.ch8; sourceTree = "<group>"; };
 		E4F3D8E51D11EB0600899F56 /* CHIP-8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CHIP-8.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F3D8F91D11EB0600899F56 /* CHIP-8Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CHIP-8Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F3D90D1D11EC7000899F56 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +78,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E45443351D21BF00005E0310 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				E45443361D21BF1F005E0310 /* Timer.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		E4F3D8DC1D11EB0600899F56 = {
 			isa = PBXGroup;
 			children = (
@@ -89,6 +109,7 @@
 		E4F3D9081D11EB1200899F56 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E45443351D21BF00005E0310 /* Helpers */,
 				E4F3D91D1D11ED4F00899F56 /* Emulator */,
 				E4F3D90D1D11EC7000899F56 /* AppDelegate.swift */,
 				E4F3D90E1D11EC7000899F56 /* ViewController.swift */,
@@ -109,6 +130,11 @@
 		E4F3D90A1D11EB2100899F56 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E4DCE3E11D2261F300409FA9 /* Clock.ch8 */,
+				E4DCE3DF1D225F8000409FA9 /* HiresWormV4.ch8 */,
+				E439E3B81D216A3600B4F53C /* Trip8.ch8 */,
+				E439E3B61D2168FF00B4F53C /* Sierpinski.ch8 */,
+				E439E3B41D2143B500B4F53C /* ParticleDemo.ch8 */,
 				E40F4BC61D1F118000A471FC /* Maze.ch8 */,
 				E4F3D9131D11ECAE00899F56 /* Assets.xcassets */,
 				E4F3D9111D11ECA700899F56 /* LaunchScreen.storyboard */,
@@ -144,6 +170,7 @@
 			buildPhases = (
 				E4F3D8E11D11EB0600899F56 /* Sources */,
 				E4F3D8E21D11EB0600899F56 /* Frameworks */,
+				E4DCE3DE1D22559E00409FA9 /* SwiftLint */,
 				E4F3D8E31D11EB0600899F56 /* Resources */,
 			);
 			buildRules = (
@@ -218,7 +245,12 @@
 			files = (
 				E40F4BC71D1F118000A471FC /* Maze.ch8 in Resources */,
 				E4F3D9141D11ECAE00899F56 /* Assets.xcassets in Resources */,
+				E439E3B71D2168FF00B4F53C /* Sierpinski.ch8 in Resources */,
+				E439E3B91D216A3600B4F53C /* Trip8.ch8 in Resources */,
+				E439E3B51D2143B500B4F53C /* ParticleDemo.ch8 in Resources */,
 				E4F3D9121D11ECA700899F56 /* LaunchScreen.storyboard in Resources */,
+				E4DCE3E21D2261F300409FA9 /* Clock.ch8 in Resources */,
+				E4DCE3E01D225F8000409FA9 /* HiresWormV4.ch8 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +263,23 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		E4DCE3DE1D22559E00409FA9 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"SwiftLint not detected, \\\"brew install swiftlint\\\" or download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		E4F3D8E11D11EB0600899F56 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -239,6 +288,7 @@
 				E4F3D91F1D11EDB800899F56 /* Emulator.swift in Sources */,
 				E4F3D9211D11EDCA00899F56 /* Opcode.swift in Sources */,
 				E4F3D9101D11EC7000899F56 /* ViewController.swift in Sources */,
+				E45443371D21BF1F005E0310 /* Timer.swift in Sources */,
 				E47F4E701D18957F001AF3EC /* Rom.swift in Sources */,
 				E4F3D90F1D11EC7000899F56 /* AppDelegate.swift in Sources */,
 			);
