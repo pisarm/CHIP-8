@@ -27,12 +27,8 @@ final class EmulatorTests: XCTestCase {
         let bytes: [UInt8] = [
             0x11, 0x23,
             ]
-        let rom = Rom(bytes: bytes)
-        let emulator = Emulator(rom: rom)
 
-        run(emulator, bytes: bytes)
-
-        XCTAssertEqual(emulator.pc, 0x123)
+        XCTAssertEqual(emulate(bytes).pc, 0x123)
     }
 
     func testCallSubroutine() {
@@ -40,11 +36,21 @@ final class EmulatorTests: XCTestCase {
     }
 
     func testSkipIfEqualValue() {
-        XCTFail()
+        let bytes: [UInt8] = [
+            0x60, 0x11,
+            0x30, 0x11,
+            ]
+
+        XCTAssertEqual(emulate(bytes).pc, 0x206)
     }
 
     func testSkipIfNotEqualValue() {
-        XCTFail()
+        let bytes: [UInt8] = [
+            0x60, 0x11,
+            0x40, 0x12,
+            ]
+
+        XCTAssertEqual(emulate(bytes).pc, 0x206)
     }
 
     func testSkipIfRegisterEqual() {
@@ -55,15 +61,11 @@ final class EmulatorTests: XCTestCase {
         let bytes: [UInt8] = [
             0x60, 0x11,
             ]
-        let rom = Rom(bytes: bytes)
-        let emulator = Emulator(rom: rom)
-
-        run(emulator, bytes: bytes)
 
         var expectedRegisters = [UInt8](count: 16, repeatedValue: 0)
         expectedRegisters.replaceRange(0..<1, with: [0x11])
 
-        XCTAssertEqual(emulator.registers, expectedRegisters)
+        XCTAssertEqual(emulate(bytes).registers, expectedRegisters)
     }
 
     func testAddValue() {
@@ -71,43 +73,88 @@ final class EmulatorTests: XCTestCase {
             0x60, 0x11,
             0x70, 0x1
             ]
-        let rom = Rom(bytes: bytes)
-        let emulator = Emulator(rom: rom)
-
-        run(emulator, bytes: bytes)
 
         var expectedRegisters = [UInt8](count: 16, repeatedValue: 0)
         expectedRegisters.replaceRange(0..<1, with: [0x12])
 
-        XCTAssertEqual(emulator.registers, expectedRegisters)
+        XCTAssertEqual(emulate(bytes).registers, expectedRegisters)
     }
 
     func testDraw() {
         let bytes: [UInt8] = [
             0x60, 0x11,
         ]
-        let rom = Rom(bytes: bytes)
-        let emulator = Emulator(rom: rom)
-
-        run(emulator, bytes: bytes)
 
         var expectations = [UInt8](count: Emulator.Screen.size, repeatedValue: 0)
 
+        XCTFail()
 
-//        var expectedRegisters = [UInt8](count: 16, repeatedValue: 0)
-//        expectedRegisters.replaceRange(0..<1, with: [0x12])
-
-        XCTAssertEqual(emulator.screen, expectations)
+        XCTAssertEqual(emulate(bytes).screen, expectations)
     }
+
+    func testSkipIfKeyPressed() {
+        XCTFail()
+    }
+
+    func testSkipIfKeyNotPressed() {
+        XCTFail()
+    }
+
+    func testStoreDelayTimer() {
+        XCTFail()
+    }
+
+    func testStoreKeyPress() {
+        XCTFail()
+    }
+
+    func testSetDelayTimer() {
+        XCTFail()
+    }
+
+    func testSoundTimer() {
+        XCTFail()
+    }
+
+    func testAddIndex() {
+        XCTFail()
+    }
+
+    func testSetIndexFontCharacter() {
+        XCTFail()
+    }
+
+    func testStoreBCD() {
+        XCTFail()
+    }
+
+    func testWriteMemory() {
+        XCTFail()
+    }
+
+    func testReadMemory() {
+        let bytes: [UInt8] = [
+            0xA1, 0x11,
+        ]
+        XCTFail()
+    }
+
 }
 
 extension EmulatorTests {
     //MARK: Helpers
-    func run(emulator: Emulator, bytes: [UInt8]) {
+
+    func emulate(bytes: [UInt8]) -> Emulator {
+        let rom = Rom(bytes: bytes)
+        let emulator = Emulator(rom: rom)
+
         var count = bytes.count / 2
         while count > 0 {
-            emulator.begin()
+            emulator.cycle()
             count = count - 1
         }
+
+        return emulator
     }
+
 }
