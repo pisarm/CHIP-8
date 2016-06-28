@@ -22,9 +22,9 @@ final class Timer {
     //MARK: Initialization
     /**
      Creates a timer which tick at a given rate.
-     
+
      Queue parameter will default to a global background queue with default priority.
-     
+
      Handler should capture self weakly in order to avoid retain cycles.
 
      - parameter rate: Rate at which the timer should tick, measured in Hz
@@ -44,18 +44,16 @@ final class Timer {
     }
 
     //MARK: Interaction
-    /**
-     Start timer
-     */
-    func start() {
+    func resume() {
         dispatch_resume(timer)
     }
 
-    /**
-     Stop timer
-     */
-    func stop() {
+    func cancel() {
         dispatch_source_cancel(timer)
     }
 
+    func suspend() {
+        dispatch_suspend(timer)
+    }
+    
 }
