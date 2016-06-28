@@ -17,13 +17,6 @@ enum Opcode {
     typealias RawOpcode = UInt16
 
     /**
-     Opcode *0NNN*
-
-     Calls RCA 1802 program at address NNN. Not necessary for most ROMs.
-     */
-    case CallProgram(address: Address)
-
-    /**
      Opcode *00E0*
 
      Clears the screen.
@@ -36,6 +29,13 @@ enum Opcode {
      Returns from a subroutine.
      */
     case Return
+
+    /**
+     Opcode *0NNN*
+
+     Calls RCA 1802 program at address NNN. Not necessary for most ROMs.
+     */
+    case CallProgram(address: Address)
 
     /**
      Opcode *1NNN*
@@ -291,14 +291,14 @@ enum Opcode {
     var rawOpcode: RawOpcode {
         switch self {
 
-        case let .CallProgram(address):
-            return address
-
         case .ClearScreen:
             return 0x00E0
 
         case .Return:
             return 0x00EE
+
+        case let .CallProgram(address):
+            return address
 
         case let .JumpAbsolute(address):
             return (0x1 << 12) | address
@@ -407,13 +407,14 @@ enum Opcode {
 
         switch (nibble1, nibble2, nibble3, nibble4) {
 
-            //TODO: support missing .CallProgram
-
         case (0x0, 0x0, 0xE, 0x0):
             self = .ClearScreen
 
         case (0x0, 0x0, 0xE, 0xE):
             self = .Return
+
+        case (0x0, _, _, _):
+            self = .CallProgram(address: rawOpcode & 0xFFF)
 
         case (0x1, _, _, _):
             self = .JumpAbsolute(address: rawOpcode & 0xFFF)
