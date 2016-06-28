@@ -83,7 +83,7 @@ extension Emulator {
         guard let opcode = Opcode(rawOpcode: rawOpcode) else {
             fatalError()
         }
-        print(opcode)
+//        print(opcode.rawOpcode)
         var shouldIncrementPC = true
         var shouldRedraw = false
 
@@ -112,12 +112,12 @@ extension Emulator {
             shouldIncrementPC = false
 
         case let .SkipIfEqualValue(x, value):
-            if x == value {
+            if registers[Int(x)] == value {
                 incrementPC()
             }
 
         case let .SkipIfNotEqualValue(x, value):
-            if x != value {
+            if registers[Int(x)] != value {
                 incrementPC()
             }
 
@@ -247,14 +247,19 @@ extension Emulator {
         }
 
         if shouldRedraw {
-////            print("\n\(screen)")
-//            for (index, element) in screen.enumerate() {
-//                print(element, separator: ",", terminator: "")
-//                if index % 32 == 0 && index != 0 {
-//                    print("\n")
-//
-//                }
-//            }
+            let rows = Int(Screen.rows)
+            let columns = Int(Screen.columns)
+
+            for y in 0..<rows {
+                var str = ""
+                for x in 0..<columns {
+                    let index = (y * columns) + x
+                    let pixel = screen[index] == 1 ? "⬜" : "⬛"
+                    str += "\(pixel)"
+                }
+                print(str)
+            }
+            print("")
         }
 
         //TODO: signal redraw using delegate
@@ -289,7 +294,7 @@ extension Emulator {
 extension Emulator {
     //MARK: Helpers
     func incrementPC() {
-        pc = pc + 2
+        pc += 2
     }
 
     func draw(x: Opcode.Register, y: Opcode.Register, rows: Opcode.Constant) {
@@ -310,13 +315,13 @@ extension Emulator {
                 if (rowData & 0x80) != 0 {
                     let screenX = (startX + column) % Screen.columns
                     let screenY = (startY + row) % Screen.rows
-                    let screenIndex = (screenY * Screen.columns) + screenX
+                    let screenIndex = (Int(screenY) * Int(Screen.columns)) + Int(screenX)
                     if screen[Int(screenIndex)] == 1 {
                         registers[0xF] = 1
                     }
                     screen[Int(screenIndex)] ^= 1
                 }
-                
+
                 // Shift pixels left to look at MSB during next iteration
                 rowData <<= 1
             }
