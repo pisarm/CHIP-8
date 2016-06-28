@@ -81,25 +81,27 @@ extension Emulator {
     func cycle() {
         let rawOpcode = (Opcode.Address(memory[Int(pc)]) << 8) | (Opcode.Address(memory[Int(pc) + 1]))
         guard let opcode = Opcode(rawOpcode: rawOpcode) else {
+            print("Invalid opcode: 0x\(String(rawOpcode, radix: 16, uppercase: true))")
             fatalError()
         }
-//        print(opcode.rawOpcode)
+//        print(String(opcode.rawOpcode, radix: 16, uppercase: true))
+
         var shouldIncrementPC = true
         var shouldRedraw = false
 
         switch opcode {
-
-        case .CallProgram:
-            //Not implemented
-            break
 
         case .ClearScreen:
             screen = Array(count: Int(Screen.size), repeatedValue: 0)
             shouldRedraw = true
 
         case .Return:
-            sp = sp - 1
-            pc = stack[Int(pc)]
+            sp -= 1
+            pc = stack[Int(sp)]
+
+        case let .CallProgram(address):
+            pc = address
+            shouldIncrementPC = false
 
         case let .JumpAbsolute(address):
             pc = address
@@ -107,7 +109,7 @@ extension Emulator {
 
         case let .CallSubroutine(address):
             stack[Int(sp)] = pc
-            sp = sp + 1
+            sp += 1
             pc = address
             shouldIncrementPC = false
 
@@ -130,29 +132,22 @@ extension Emulator {
             registers[Int(x)] = value
 
         case let .AddValue(x, value):
-            let tmp = registers[Int(x)] &+ value
-            registers[Int(x)] = tmp
+            registers[Int(x)] = registers[Int(x)] &+ value
 
         case let .SetRegister(x, y):
             registers[Int(x)] = registers[Int(y)]
 
         case let .OrRegister(x, y):
-            let registerX = registers[Int(x)]
-            let registerY = registers[Int(y)]
-            registers[Int(x)] = registerX | registerY
+            registers[Int(x)] |= registers[Int(y)]
 
         case let .AndRegister(x, y):
-            let registerX = registers[Int(x)]
-            let registerY = registers[Int(y)]
-            registers[Int(x)] = registerX & registerY
+            registers[Int(x)] &= registers[Int(y)]
 
         case let .XorRegister(x, y):
-            let registerX = registers[Int(x)]
-            let registerY = registers[Int(y)]
-            registers[Int(x)] = registerX ^ registerY
+            registers[Int(x)] ^= registers[Int(y)]
 
         case let .AddRegister(x, y):
-            registers[0xF] = registers[Int(x)] + registers[Int(y)] > UInt8.max ? 1 : 0
+            registers[0xF] = Int(registers[Int(x)]) + Int(registers[Int(y)]) > Int(UInt8.max) ? 1 : 0
             registers[Int(x)] = registers[Int(x)] &+ registers[Int(y)]
 
         case let .SubtractYFromX(x, y):
@@ -168,8 +163,8 @@ extension Emulator {
             registers[Int(x)] = registers[Int(y)] &- registers[Int(x)]
 
         case let .ShiftLeft(x):
-            registers[0xF] = registers[Int(x)] & 0x80
-            registers[Int(x)] = registers[Int(x)] << 1
+            registers[0xF] = (registers[Int(x)] & 0x80) >> 7
+            registers[Int(x)] <<= 1
 
         case let .SkipIfNotEqualRegister(x, y):
             if registers[Int(x)] != registers[Int(y)] {
