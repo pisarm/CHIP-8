@@ -407,6 +407,8 @@ enum Opcode {
 
         switch (nibble1, nibble2, nibble3, nibble4) {
 
+            //TODO: support missing .CallProgram
+
         case (0x0, 0x0, 0xE, 0x0):
             self = .ClearScreen
 
@@ -484,44 +486,44 @@ enum Opcode {
 
         case let (0xF, x, 0x0, 0x7):
             self = .StoreDelayTimer(x: x)
-            
+
         case let (0xF, x, 0x0, 0xA):
             self = .StoreKeyPress(x: x)
-            
+
         case let (0xF, x, 0x1, 0x5):
             self = .SetDelayTimer(x: x)
-            
+
         case let (0xF, x, 0x1, 0x8):
             self = .SetSoundTimer(x: x)
-            
+
         case let (0xF, x, 0x1, 0xE):
             self = .AddIndex(x: x)
-            
+
         case let (0xF, x, 0x2, 0x9):
             self = .SetIndexFontCharacter(x: x)
-            
+
         case let (0xF, x, 0x3, 0x3):
             self = .StoreBCD(x: x)
-            
+
         case let (0xF, x, 0x5, 0x5):
             self = .WriteMemory(x: x)
-            
+
         case let (0xF, x, 0x6, 0x5):
             self = .ReadMemory(x: x)
-            
+
         default:
             return nil
-            
+
         }
     }
 }
 
 extension Opcode: Comparable { }
 
-func ==(lhs: Opcode, rhs: Opcode) -> Bool {
+func == (lhs: Opcode, rhs: Opcode) -> Bool {
     return lhs.rawOpcode == rhs.rawOpcode
 }
 
-func <(lhs: Opcode, rhs: Opcode) -> Bool {
+func < (lhs: Opcode, rhs: Opcode) -> Bool {
     return lhs.rawOpcode < rhs.rawOpcode
 }

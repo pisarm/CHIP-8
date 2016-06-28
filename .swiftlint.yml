@@ -1,0 +1,21 @@
+disabled_rules: # rule identifiers to exclude from running
+  - line_length
+  
+included: # paths to include during linting. `--path` is ignored if present. takes precendence over `excluded`.
+  - Sources
+  - Tests
+
+cyclomatic_complexity:
+  warning: 10
+  error: 50
+
+force_cast: warning
+
+force_try: warning
+
+function_body_length:
+  warning: 300
+  error: 400
+
+variable_name: 
+  min_length: 1

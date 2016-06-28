@@ -23,5 +23,5 @@ final class Rom {
         self.bytes = bytes
     }
 
-    //TODO: init with array of Opcode objects 
+    //TODO: init with array of Opcode objects
 }

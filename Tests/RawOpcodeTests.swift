@@ -144,11 +144,11 @@ final class RawOpcodeTests: XCTestCase {
     func testStoreBCD() {
         test(rawOpcode: 0xF533)
     }
-    
+
     func testWriteMemory() {
         test(rawOpcode: 0xF555)
     }
-    
+
     func testReadMemory() {
         test(rawOpcode: 0xF765)
     }
