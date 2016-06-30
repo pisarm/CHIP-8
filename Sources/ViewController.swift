@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let gameUrl = NSBundle(forClass: self.dynamicType).URLForResource("ZeroDemo", withExtension: "ch8"), data = NSData(contentsOfURL: gameUrl) {
+        if let gameUrl = NSBundle(forClass: self.dynamicType).URLForResource("Maze", withExtension: "ch8"), data = NSData(contentsOfURL: gameUrl) {
             let rom = Rom(data: data)
             let emulator = Emulator(rom: rom)
 
@@ -27,7 +27,7 @@ class ViewController: UIViewController {
             cycleTimer.resume()
             tickTimer.resume()
         } else {
-            print(".ch8 file not found")
+            fatalError(".ch8 file not found")
         }
     }
 }

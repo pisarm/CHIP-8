@@ -8,11 +8,59 @@
 
 import Foundation
 
+extension Array {
+    subscript (index: UInt8) -> Element {
+        get {
+            return self[Int(index)]
+        }
+        set {
+            self[Int(index)] = newValue
+        }
+    }
+}
+
 final class Emulator {
     struct Screen {
         static let rows: UInt8 = 32
         static let columns: UInt8 = 64
         static let size = Int(rows) * Int(columns)
+
+        private (set) var pixels: [[UInt8]]
+
+        init() {
+            (pixels) = Screen.commonInit()
+        }
+
+        private static func commonInit() -> ([[UInt8]]) {
+            var pixels: [[UInt8]] = []
+            for _ in 0..<Screen.columns {
+                pixels.append([UInt8](count: Int(Screen.rows), repeatedValue: 0))
+            }
+
+            return pixels
+        }
+
+        mutating func reset() {
+            (pixels) = Screen.commonInit()
+        }
+
+        /**
+         Toggle pixel at x,y.
+
+         - parameter x: X coordinate of the point to toggle
+         - parameter y: Y coordinate of the point to toggle
+
+         - returns: Value of pixel **prior** to being toggled
+         */
+        mutating func togglePixel(x: UInt8, y: UInt8) -> UInt8 {
+            let value = pixels[x][y]
+            pixels[x][y] ^= 1
+            return value
+        }
+
+        subscript (x: UInt8, y: UInt8) -> UInt8 {
+            get { return pixels[x][y] }
+        }
     }
 
     // See http://devernay.free.fr/hacks/chip8/C8TECH10.HTM#keyboard
@@ -46,7 +94,7 @@ final class Emulator {
     private (set) var sp: Opcode.Address = 0x0
     private (set) var delayTimer: UInt8 = 0x0
     private (set) var soundTimer: UInt8 = 0x0
-    private (set) var screen: [UInt8] = Array(count: Int(Screen.size), repeatedValue: 0)
+    private (set) var screen = Screen()
     private (set) var keypad = [Bool](count: 16, repeatedValue: false)
     private (set) var lastPressedKey: Key?
 
@@ -84,7 +132,7 @@ extension Emulator {
             print("Invalid opcode: 0x\(String(rawOpcode, radix: 16, uppercase: true))")
             fatalError()
         }
-//        print(String(opcode.rawOpcode, radix: 16, uppercase: true))
+        //        print(String(opcode.rawOpcode, radix: 16, uppercase: true))
 
         var shouldIncrementPC = true
         var shouldRedraw = false
@@ -92,7 +140,7 @@ extension Emulator {
         switch opcode {
 
         case .ClearScreen:
-            screen = Array(count: Int(Screen.size), repeatedValue: 0)
+            screen.reset()
             shouldRedraw = true
 
         case .Return:
@@ -242,19 +290,33 @@ extension Emulator {
         }
 
         if shouldRedraw {
-            let rows = Int(Screen.rows)
-            let columns = Int(Screen.columns)
-
-            for y in 0..<rows {
+            for c in 0..<Screen.columns {
                 var str = ""
-                for x in 0..<columns {
-                    let index = (y * columns) + x
-                    let pixel = screen[index] == 1 ? "⬜" : "⬛"
+                for r in 0..<Screen.rows {
+                    let pixel = screen[c, r] == 1 ? "⬜" : "⬛"
                     str += "\(pixel)"
                 }
                 print(str)
             }
             print("")
+
+
+
+
+
+//            let rows = Int(Screen.rows)
+//            let columns = Int(Screen.columns)
+//
+//            for y in 0..<rows {
+//                var str = ""
+//                for x in 0..<columns {
+//                    let index = (y * columns) + x
+//                    let pixel = screen.contents[index] == 1 ? "⬜" : "⬛"
+//                    str += "\(pixel)"
+//                }
+//                print(str)
+//            }
+//            print("")
         }
 
         //TODO: signal redraw using delegate
@@ -275,8 +337,6 @@ extension Emulator {
         }
     }
 
-    /**
-     */
     func set(key: Key, pressed: Bool) {
         keypad[Int(key.rawValue)] = pressed
 
@@ -308,15 +368,18 @@ extension Emulator {
 
                 // Look at MSB pixel and continue if it is 1
                 if (rowData & 0x80) != 0 {
-                    let screenX = (startX + column) % Screen.columns
-                    let screenY = (startY + row) % Screen.rows
-                    let screenIndex = (Int(screenY) * Int(Screen.columns)) + Int(screenX)
-                    if screen[Int(screenIndex)] == 1 {
-                        registers[0xF] = 1
-                    }
-                    screen[Int(screenIndex)] ^= 1
-                }
+                    registers[0xF] = screen.togglePixel(startX + column, y: startY + row)
 
+
+//                    let screenX = (startX + column) % Screen.columns
+//                    let screenY = (startY + row) % Screen.rows
+//                    let screenIndex = (Int(screenY) * Int(Screen.columns)) + Int(screenX)
+//                    if screen.contents[Int(screenIndex)] == 1 {
+//                        registers[0xF] = 1
+//                    }
+//                    screen.contents[Int(screenIndex)] ^= 1
+                }
+                
                 // Shift pixels left to look at MSB during next iteration
                 rowData <<= 1
             }

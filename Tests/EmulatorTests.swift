@@ -89,7 +89,7 @@ final class EmulatorTests: XCTestCase {
 
         XCTFail()
 
-        XCTAssertEqual(emulate(bytes).screen, expectations)
+        XCTAssertEqual(emulate(bytes).screen.content, expectations)
     }
 
     func testSkipIfKeyPressed() {
@@ -133,9 +133,6 @@ final class EmulatorTests: XCTestCase {
     }
 
     func testReadMemory() {
-        let bytes: [UInt8] = [
-            0xA1, 0x11,
-        ]
         XCTFail()
     }
 
