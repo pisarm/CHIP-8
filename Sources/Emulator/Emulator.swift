@@ -8,58 +8,64 @@
 
 import Foundation
 
-extension Array {
-    subscript (index: UInt8) -> Element {
-        get {
-            return self[Int(index)]
-        }
-        set {
-            self[Int(index)] = newValue
-        }
-    }
-}
-
 final class Emulator {
-    struct Screen {
-        static let rows: UInt8 = 32
-        static let columns: UInt8 = 64
-        static let size = Int(rows) * Int(columns)
 
-        private (set) var pixels: [[UInt8]]
+    struct Screen {
+        static let columnCount: UInt8 = 64
+        static let rowCount: UInt8 = 32
+
+        private var pixels: [UInt8]
 
         init() {
             (pixels) = Screen.commonInit()
         }
 
-        private static func commonInit() -> ([[UInt8]]) {
-            var pixels: [[UInt8]] = []
-            for _ in 0..<Screen.columns {
-                pixels.append([UInt8](count: Int(Screen.rows), repeatedValue: 0))
-            }
-
-            return pixels
+        private static func commonInit() -> ([UInt8]) {
+            return [UInt8](count: Int(Screen.rowCount) * Int(Screen.columnCount), repeatedValue: 0)
         }
 
+        /**
+         Reset the screen.
+
+         Internal data structure is set to all zeros
+         */
         mutating func reset() {
             (pixels) = Screen.commonInit()
         }
 
         /**
-         Toggle pixel at x,y.
+         Toggle the pixel at the specified coordinate.
 
          - parameter x: X coordinate of the point to toggle
          - parameter y: Y coordinate of the point to toggle
-
          - returns: Value of pixel **prior** to being toggled
          */
         mutating func togglePixel(x: UInt8, y: UInt8) -> UInt8 {
-            let value = pixels[x][y]
-            pixels[x][y] ^= 1
+            let sx = x % Screen.columnCount
+            let sy = y % Screen.rowCount
+            let index = (Int(sy) * Int(Screen.columnCount)) + Int(sx)
+
+            let value = pixels[index]
+            pixels[index] ^= 1
             return value
         }
 
+        /**
+         Get the value of the pixel at the specified coordinate.
+
+         - parameter x: X-coordinate of the point to get
+         - parameter y: Y-coordinate of the point to get
+
+         - returns: Value of the pixel at x, y
+         */
         subscript (x: UInt8, y: UInt8) -> UInt8 {
-            get { return pixels[x][y] }
+            get {
+                let sx = x % Screen.columnCount
+                let sy = y % Screen.rowCount
+                let index = (Int(sy) * Int(Screen.columnCount)) + Int(sx)
+                
+                return pixels[index]
+            }
         }
     }
 
@@ -290,33 +296,15 @@ extension Emulator {
         }
 
         if shouldRedraw {
-            for c in 0..<Screen.columns {
+            for row in 0..<Screen.rowCount {
                 var str = ""
-                for r in 0..<Screen.rows {
-                    let pixel = screen[c, r] == 1 ? "⬜" : "⬛"
+                for col in 0..<Screen.columnCount {
+                    let pixel = screen[col, row] == 1 ? "⬜" : "⬛"
                     str += "\(pixel)"
                 }
                 print(str)
             }
             print("")
-
-
-
-
-
-//            let rows = Int(Screen.rows)
-//            let columns = Int(Screen.columns)
-//
-//            for y in 0..<rows {
-//                var str = ""
-//                for x in 0..<columns {
-//                    let index = (y * columns) + x
-//                    let pixel = screen.contents[index] == 1 ? "⬜" : "⬛"
-//                    str += "\(pixel)"
-//                }
-//                print(str)
-//            }
-//            print("")
         }
 
         //TODO: signal redraw using delegate
@@ -361,27 +349,17 @@ extension Emulator {
         // Iterate over the number of rows
         for row in 0..<rows {
             // Get data for current row
-            var rowData = memory[Int(index + UInt16(row))]
-
+            var pixelData = memory[Int(index + UInt16(row))]
+            
             // Iterate over all bits in the row data
             for column in 0..<UInt8(8) {
-
                 // Look at MSB pixel and continue if it is 1
-                if (rowData & 0x80) != 0 {
+                if (pixelData & 0x80) != 0 {
                     registers[0xF] = screen.togglePixel(startX + column, y: startY + row)
-
-
-//                    let screenX = (startX + column) % Screen.columns
-//                    let screenY = (startY + row) % Screen.rows
-//                    let screenIndex = (Int(screenY) * Int(Screen.columns)) + Int(screenX)
-//                    if screen.contents[Int(screenIndex)] == 1 {
-//                        registers[0xF] = 1
-//                    }
-//                    screen.contents[Int(screenIndex)] ^= 1
                 }
                 
                 // Shift pixels left to look at MSB during next iteration
-                rowData <<= 1
+                pixelData <<= 1
             }
         }
     }
