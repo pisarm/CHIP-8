@@ -8,66 +8,17 @@
 
 import Foundation
 
+protocol EmulatorDelegate: class {
+    func beep()
+    func draw(screen screen: Screen)
+}
+
 final class Emulator {
-
-    struct Screen {
-        static let columnCount: UInt8 = 64
-        static let rowCount: UInt8 = 32
-
-        private var pixels: [UInt8]
-
-        init() {
-            (pixels) = Screen.commonInit()
-        }
-
-        private static func commonInit() -> ([UInt8]) {
-            return [UInt8](count: Int(Screen.rowCount) * Int(Screen.columnCount), repeatedValue: 0)
-        }
-
-        /**
-         Reset the screen.
-
-         Internal data structure is set to all zeros
-         */
-        mutating func reset() {
-            (pixels) = Screen.commonInit()
-        }
-
-        /**
-         Toggle the pixel at the specified coordinate.
-
-         - parameter x: X coordinate of the point to toggle
-         - parameter y: Y coordinate of the point to toggle
-         - returns: Value of pixel **prior** to being toggled
-         */
-        mutating func togglePixel(x: UInt8, y: UInt8) -> UInt8 {
-            let sx = x % Screen.columnCount
-            let sy = y % Screen.rowCount
-            let index = (Int(sy) * Int(Screen.columnCount)) + Int(sx)
-
-            let value = pixels[index]
-            pixels[index] ^= 1
-            return value
-        }
-
-        /**
-         Get the value of the pixel at the specified coordinate.
-
-         - parameter x: X-coordinate of the point to get
-         - parameter y: Y-coordinate of the point to get
-
-         - returns: Value of the pixel at x, y
-         */
-        subscript (x: UInt8, y: UInt8) -> UInt8 {
-            get {
-                let sx = x % Screen.columnCount
-                let sy = y % Screen.rowCount
-                let index = (Int(sy) * Int(Screen.columnCount)) + Int(sx)
-                
-                return pixels[index]
-            }
-        }
-    }
+    weak var delegate: EmulatorDelegate?
+    //TODO: configurable cycleRate - change while running
+    lazy var cycleTimer: Timer = Timer(rate: 500, queue: self.timerQueue) { [weak self] in self?.cycle() }
+    lazy var tickTimer: Timer = Timer(rate: 50, queue: self.timerQueue) { [weak self] in self?.timerTick() }
+    lazy var timerQueue: dispatch_queue_t = dispatch_queue_create("dk.pisarm.CHIP-8.timer", DISPATCH_QUEUE_CONCURRENT)
 
     // See http://devernay.free.fr/hacks/chip8/C8TECH10.HTM#keyboard
     enum Key: UInt8 {
@@ -128,17 +79,27 @@ final class Emulator {
     init(rom: Rom) {
         memory.replaceRange(Int(pc)..<Int(pc) + rom.bytes.count, with: rom.bytes)
     }
+
+    func resume() {
+        cycleTimer.resume()
+        tickTimer.resume()
+    }
+
+    func suspend() {
+        cycleTimer.suspend()
+        tickTimer.suspend()
+    }
 }
 
 extension Emulator {
     //MARK: Emulation
-    func cycle() {
+    private func cycle() {
         let rawOpcode = (Opcode.Address(memory[Int(pc)]) << 8) | (Opcode.Address(memory[Int(pc) + 1]))
         guard let opcode = Opcode(rawOpcode: rawOpcode) else {
             print("Invalid opcode: 0x\(String(rawOpcode, radix: 16, uppercase: true))")
             fatalError()
         }
-        //        print(String(opcode.rawOpcode, radix: 16, uppercase: true))
+//                print(String(opcode.rawOpcode, radix: 16, uppercase: true))
 
         var shouldIncrementPC = true
         var shouldRedraw = false
@@ -296,23 +257,23 @@ extension Emulator {
         }
 
         if shouldRedraw {
-            for row in 0..<Screen.rowCount {
-                var str = ""
-                for col in 0..<Screen.columnCount {
-                    let pixel = screen[col, row] == 1 ? "⬜" : "⬛"
-                    str += "\(pixel)"
-                }
-                print(str)
-            }
-            print("")
-        }
+            delegate?.draw(screen: screen)
 
-        //TODO: signal redraw using delegate
+//            for row in 0..<Screen.rowCount {
+//                var str = ""
+//                for col in 0..<Screen.columnCount {
+//                    let pixel = screen[col, row] == 1 ? "⬜" : "⬛"
+//                    str += "\(pixel)"
+//                }
+//                print(str)
+//            }
+//            print("")
+        }
     }
 
     /**
      */
-    func timerTick() {
+    private func timerTick() {
         if delayTimer > 0 {
             delayTimer -= 1
         }
@@ -336,11 +297,11 @@ extension Emulator {
 
 extension Emulator {
     //MARK: Helpers
-    func incrementPC() {
+    private func incrementPC() {
         pc += 2
     }
 
-    func draw(x: Opcode.Register, y: Opcode.Register, rows: Opcode.Constant) {
+    private func draw(x: Opcode.Register, y: Opcode.Register, rows: Opcode.Constant) {
         let startX = registers[Int(x)]
         let startY = registers[Int(y)]
 

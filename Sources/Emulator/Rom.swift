@@ -24,4 +24,6 @@ final class Rom {
     }
 
     //TODO: init with array of Opcode objects
+
+    //TODO: expose which keys are used in a particular ROM - scan through opcodes and look for EX9E, FX0A and EXA1 ?? so the view can signal to the user which keys are actually active in a given ROM
 }

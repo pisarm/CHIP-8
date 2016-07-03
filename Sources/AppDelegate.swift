@@ -13,10 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: Properties
     var window: UIWindow?
 
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         window = UIWindow()
-        window!.rootViewController = ViewController()
+        window!.rootViewController = EmulatorViewController()
         window!.makeKeyAndVisible()
 
         return true

@@ -20,10 +20,12 @@
 		E473E2981D2306EB00F756C7 /* ZeroDemo.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E473E2941D2306EB00F756C7 /* ZeroDemo.ch8 */; };
 		E47F4E701D18957F001AF3EC /* Rom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47F4E6F1D18957F001AF3EC /* Rom.swift */; };
 		E47F4E721D189B44001AF3EC /* RomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47F4E711D189B44001AF3EC /* RomTests.swift */; };
+		E4BE6B1F1D2840BB00F42B12 /* ScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BE6B1E1D2840BB00F42B12 /* ScreenScene.swift */; };
+		E4BE6B211D2841B000F42B12 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BE6B201D2841B000F42B12 /* Screen.swift */; };
+		E4BE6B231D287F0F00F42B12 /* EmulatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BE6B221D287F0F00F42B12 /* EmulatorViewController.swift */; };
 		E4DCE3E01D225F8000409FA9 /* HiresWormV4.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E4DCE3DF1D225F8000409FA9 /* HiresWormV4.ch8 */; };
 		E4DCE3E21D2261F300409FA9 /* Clock.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E4DCE3E11D2261F300409FA9 /* Clock.ch8 */; };
 		E4F3D90F1D11EC7000899F56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3D90D1D11EC7000899F56 /* AppDelegate.swift */; };
-		E4F3D9101D11EC7000899F56 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3D90E1D11EC7000899F56 /* ViewController.swift */; };
 		E4F3D9121D11ECA700899F56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F3D9111D11ECA700899F56 /* LaunchScreen.storyboard */; };
 		E4F3D9141D11ECAE00899F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F3D9131D11ECAE00899F56 /* Assets.xcassets */; };
 		E4F3D91F1D11EDB800899F56 /* Emulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3D91E1D11EDB800899F56 /* Emulator.swift */; };
@@ -54,12 +56,14 @@
 		E473E2941D2306EB00F756C7 /* ZeroDemo.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZeroDemo.ch8; sourceTree = "<group>"; };
 		E47F4E6F1D18957F001AF3EC /* Rom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rom.swift; sourceTree = "<group>"; };
 		E47F4E711D189B44001AF3EC /* RomTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RomTests.swift; sourceTree = "<group>"; };
+		E4BE6B1E1D2840BB00F42B12 /* ScreenScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenScene.swift; sourceTree = "<group>"; };
+		E4BE6B201D2841B000F42B12 /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
+		E4BE6B221D287F0F00F42B12 /* EmulatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmulatorViewController.swift; sourceTree = "<group>"; };
 		E4DCE3DF1D225F8000409FA9 /* HiresWormV4.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = HiresWormV4.ch8; sourceTree = "<group>"; };
 		E4DCE3E11D2261F300409FA9 /* Clock.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Clock.ch8; sourceTree = "<group>"; };
 		E4F3D8E51D11EB0600899F56 /* CHIP-8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CHIP-8.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F3D8F91D11EB0600899F56 /* CHIP-8Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CHIP-8Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F3D90D1D11EC7000899F56 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E4F3D90E1D11EC7000899F56 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E4F3D9111D11ECA700899F56 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E4F3D9131D11ECAE00899F56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E4F3D9171D11ED0900899F56 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -86,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E4433BCA1D271F3F00D4DD3C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E4BE6B1E1D2840BB00F42B12 /* ScreenScene.swift */,
+				E4BE6B221D287F0F00F42B12 /* EmulatorViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		E45443351D21BF00005E0310 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
@@ -117,10 +130,10 @@
 		E4F3D9081D11EB1200899F56 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E4433BCA1D271F3F00D4DD3C /* View */,
 				E45443351D21BF00005E0310 /* Helpers */,
 				E4F3D91D1D11ED4F00899F56 /* Emulator */,
 				E4F3D90D1D11EC7000899F56 /* AppDelegate.swift */,
-				E4F3D90E1D11EC7000899F56 /* ViewController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -169,6 +182,7 @@
 				E4F3D91E1D11EDB800899F56 /* Emulator.swift */,
 				E4F3D9201D11EDCA00899F56 /* Opcode.swift */,
 				E47F4E6F1D18957F001AF3EC /* Rom.swift */,
+				E4BE6B201D2841B000F42B12 /* Screen.swift */,
 			);
 			path = Emulator;
 			sourceTree = "<group>";
@@ -303,10 +317,12 @@
 			files = (
 				E4F3D91F1D11EDB800899F56 /* Emulator.swift in Sources */,
 				E4F3D9211D11EDCA00899F56 /* Opcode.swift in Sources */,
-				E4F3D9101D11EC7000899F56 /* ViewController.swift in Sources */,
+				E4BE6B231D287F0F00F42B12 /* EmulatorViewController.swift in Sources */,
+				E4BE6B1F1D2840BB00F42B12 /* ScreenScene.swift in Sources */,
 				E45443371D21BF1F005E0310 /* Timer.swift in Sources */,
 				E47F4E701D18957F001AF3EC /* Rom.swift in Sources */,
 				E4F3D90F1D11EC7000899F56 /* AppDelegate.swift in Sources */,
+				E4BE6B211D2841B000F42B12 /* Screen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
