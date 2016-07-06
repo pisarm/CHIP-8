@@ -302,23 +302,26 @@ extension Emulator {
     }
 
     private func draw(x: Opcode.Register, y: Opcode.Register, rows: Opcode.Constant) {
-        let startX = registers[Int(x)]
-        let startY = registers[Int(y)]
+        let startX = Int(registers[Int(x)])
+        let startY = Int(registers[Int(y)])
 
         registers[0xF] = 0
 
         // Iterate over the number of rows
-        for row in 0..<rows {
+        for row in 0..<Int(rows) {
             // Get data for current row
             var pixelData = memory[Int(index + UInt16(row))]
-            
+
             // Iterate over all bits in the row data
-            for column in 0..<UInt8(8) {
+            for column in 0..<8 {
                 // Look at MSB pixel and continue if it is 1
                 if (pixelData & 0x80) != 0 {
-                    registers[0xF] = screen.togglePixel(startX + column, y: startY + row)
+                    registers[0xF] = 0
+                    if screen.togglePixel(startX + column, y: startY + row) == 1 {
+                        registers[0xF] = 1
+                    }
                 }
-                
+
                 // Shift pixels left to look at MSB during next iteration
                 pixelData <<= 1
             }

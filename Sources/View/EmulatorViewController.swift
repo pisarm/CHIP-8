@@ -25,7 +25,7 @@ final class EmulatorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let gameUrl = NSBundle(forClass: self.dynamicType).URLForResource("ParticleDemo", withExtension: "ch8"), data = NSData(contentsOfURL: gameUrl) {
+        if let gameUrl = NSBundle(forClass: self.dynamicType).URLForResource("Blinky", withExtension: "ch8"), data = NSData(contentsOfURL: gameUrl) {
             emulator = Emulator(rom: Rom(data: data))
             emulator?.delegate = self
         } else {
@@ -41,10 +41,10 @@ final class EmulatorViewController: UIViewController {
     }
 
     private func setupConstraints() {
-        skView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor).active = true
-        skView.topAnchor.constraintEqualToAnchor(view.topAnchor, constant: 20).active = true
-        skView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor).active = true
-        skView.heightAnchor.constraintEqualToConstant(view.frame.width * (CGFloat(Screen.rowCount) / CGFloat(Screen.columnCount))).active = true
+        skView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor, constant: 100).active = true
+        skView.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
+        skView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor, constant: -100).active = true
+        skView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
     }
 
     override func viewWillLayoutSubviews() {
@@ -57,15 +57,22 @@ final class EmulatorViewController: UIViewController {
         }
 
         screenScene = ScreenScene(size: skView.bounds.size, screen: emulator.screen)
-
         skView.presentScene(screenScene)
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        guard let emulator = emulator else {
+            fatalError("No emulator")
+        }
+
         emulator.resume()
     }
 
-    override func preferredStatusBarStyle() -> UIStatusBarStyle {
-        return .LightContent
+    override func prefersStatusBarHidden() -> Bool {
+        return true
     }
-
 }
 
 extension EmulatorViewController: EmulatorDelegate {

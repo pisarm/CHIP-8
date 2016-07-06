@@ -9,8 +9,8 @@
 import Foundation
 
 struct Screen {
-    static let columnCount: UInt8 = 64
-    static let rowCount: UInt8 = 32
+    static let columnCount = 64
+    static let rowCount = 32
 
     private (set) var pixels: [UInt8]
 
@@ -39,7 +39,7 @@ struct Screen {
      - parameter y: Y coordinate of the point to toggle
      - returns: Value of pixel **prior** to being toggled
      */
-    mutating func togglePixel(x: UInt8, y: UInt8) -> UInt8 {
+    mutating func togglePixel(x: Int, y: Int) -> UInt8 {
         let sx = x % Screen.columnCount
         let sy = y % Screen.rowCount
         let index = (Int(sy) * Int(Screen.columnCount)) + Int(sx)
@@ -57,7 +57,7 @@ struct Screen {
 
      - returns: Value of the pixel at x, y
      */
-    subscript (x: UInt8, y: UInt8) -> UInt8 {
+    subscript (x: Int, y: Int) -> UInt8 {
         get {
             let sx = x % Screen.columnCount
             let sy = y % Screen.rowCount

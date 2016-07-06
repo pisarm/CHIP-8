@@ -13,14 +13,16 @@ import UIKit
 final class ScreenScene: SKScene {
     var screen: Screen {
         didSet {
-            //TODO: redraw
-
             for (index, pixel) in screen.pixels.enumerate() {
                 self.pixels[index].color = pixel == 0 ? .blackColor() : .whiteColor()
             }
         }
     }
 
+    //TODO: 
+    // Optimize by not drawing black pixels - have a dictionary instead, where the index is the key
+    // 0 = remove from dictionary, 1 = add to dictionary
+    // - remember to have method for calculating x,y from index (see Screen struct)
     var pixels: [SKSpriteNode] = []
 
     init(size: CGSize, screen: Screen) {
@@ -28,7 +30,7 @@ final class ScreenScene: SKScene {
 
         super.init(size: size)
 
-        let pixelSide = floor(size.width / CGFloat(Screen.columnCount))
+        let pixelSide = size.width / CGFloat(Screen.columnCount)
         let pixelSize = CGSize(width: pixelSide, height: pixelSide)
 
         for row in 0..<Screen.rowCount {
