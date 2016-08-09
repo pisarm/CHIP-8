@@ -519,12 +519,13 @@ enum Opcode {
     }
 }
 
-extension Opcode: Comparable { }
+extension Opcode: Comparable {
+    //MARK: Comparable
+    static func == (lhs: Opcode, rhs: Opcode) -> Bool {
+        return lhs.rawOpcode == rhs.rawOpcode
+    }
 
-func == (lhs: Opcode, rhs: Opcode) -> Bool {
-    return lhs.rawOpcode == rhs.rawOpcode
-}
-
-func < (lhs: Opcode, rhs: Opcode) -> Bool {
-    return lhs.rawOpcode < rhs.rawOpcode
+    static func < (lhs: Opcode, rhs: Opcode) -> Bool {
+        return lhs.rawOpcode < rhs.rawOpcode
+    }
 }
