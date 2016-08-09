@@ -10,50 +10,85 @@ import Foundation
 
 final class Timer {
     //MARK: Typealiases
-    typealias TimerHandler = () -> Void
+    public typealias DispatchHandler = () -> Void
 
     //MARK: Properties
-    private let rate: Int
-    private let handler: TimerHandler
+    public var interval: DispatchTimeInterval {
+        didSet {
+            self.cancel()
+            (self.timer) = Timer.commonInit(queue: self.queue, interval: self.interval, handler: self.handler)
+            self.resume()
+        }
+    }
 
-    private let timer: dispatch_source_t
-    private let queue: dispatch_queue_t
+    private var isRunning = false
+    private let handler: DispatchHandler
+    private var timer: DispatchSourceTimer
+    private let queue: DispatchQueue
 
     //MARK: Initialization
     /**
-     Creates a timer which tick at a given rate.
+     Creates a timer which tick at a given interval.
 
-     Queue parameter will default to a global background queue with default priority.
+     Queue parameter will default to a global background queue with default QOS.
 
      Handler should capture self weakly in order to avoid retain cycles.
 
-     - parameter rate: Rate at which the timer should tick, measured in Hz
+     Example:
+     ```
+     let timer = Timer(interval: .milliseconds(2)) {
+     print("tick/tock")
+     }
+     timer.resume()
+     ```
+
      - parameter queue: Dispatch queue the handler should execute on
+     - parameter interval: Interval at which the timer should tick
      - parameter handler: Evaluated every tick of the timer
      */
-    init(rate: Int, queue: dispatch_queue_t = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), handler: TimerHandler) {
-        self.rate = rate
+    init(queue: DispatchQueue = DispatchQueue.global(qos: .default), interval: DispatchTimeInterval, handler: DispatchHandler) {
         self.queue = queue
+        self.interval = interval
         self.handler = handler
 
-        self.timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue)
-        dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, NSEC_PER_SEC / UInt64(rate), 0)
-        dispatch_source_set_event_handler(timer) {
-            self.handler()
+        (self.timer) = Timer.commonInit(queue: queue, interval: interval, handler: handler)
+    }
+
+    private static func commonInit(queue: DispatchQueue, interval: DispatchTimeInterval, handler: DispatchHandler) -> (DispatchSourceTimer) {
+        let timer = DispatchSource.makeTimerSource(queue: queue)
+        timer.scheduleRepeating(deadline: .now(), interval: interval)
+        timer.setEventHandler(qos: DispatchQoS.default, flags: [.enforceQoS]) {
+            handler()
         }
+
+        return (timer)
     }
 
     //MARK: Interaction
     func resume() {
-        dispatch_resume(timer)
+        guard !isRunning else {
+            return
+        }
+
+        isRunning = true
+        timer.resume()
     }
 
     func cancel() {
-        dispatch_source_cancel(timer)
+        guard isRunning else {
+            return
+        }
+
+        isRunning = false
+        timer.cancel()
     }
 
     func suspend() {
-        dispatch_suspend(timer)
+        guard isRunning else {
+            return
+        }
+        
+        isRunning = false
+        timer.suspend()
     }
-    
 }

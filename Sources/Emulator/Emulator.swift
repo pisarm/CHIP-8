@@ -10,15 +10,15 @@ import Foundation
 
 protocol EmulatorDelegate: class {
     func beep()
-    func draw(screen screen: Screen)
+    func draw(screen: Screen)
 }
 
 final class Emulator {
     weak var delegate: EmulatorDelegate?
     //TODO: configurable cycleRate - change while running
-    lazy var cycleTimer: Timer = Timer(rate: 500, queue: self.timerQueue) { [weak self] in self?.cycle() }
-    lazy var tickTimer: Timer = Timer(rate: 50, queue: self.timerQueue) { [weak self] in self?.timerTick() }
-    lazy var timerQueue: dispatch_queue_t = dispatch_queue_create("dk.pisarm.CHIP-8.timer", DISPATCH_QUEUE_CONCURRENT)
+    lazy var cycleTimer: Timer = Timer(interval: .milliseconds(2), handler: { [weak self] in self?.cycle() })
+    lazy var tickTimer: Timer = Timer(interval: .milliseconds(20), handler: { [weak self] in self?.timerTick() })
+
 
     // See http://devernay.free.fr/hacks/chip8/C8TECH10.HTM#keyboard
     enum Key: UInt8 {
@@ -42,17 +42,17 @@ final class Emulator {
 
     //MARK: Internals
     //TODO: replace arrays with a fixed size arrays
-    private (set) var registers: [UInt8] = Array(count: 16, repeatedValue: 0)
+    private (set) var registers: [UInt8] = Array(repeating: 0, count: 16)
     private (set) var index: Opcode.Address = 0x0
     private (set) var pc: Opcode.Address = 0x200
-    private (set) var memory: [UInt8] = Array(count: 4096, repeatedValue: 0)
+    private (set) var memory: [UInt8] = Array(repeating: 0, count: 4096)
     private (set) var opcode: Opcode.Address = 0x0
-    private (set) var stack: [Opcode.Address] = Array(count: 16, repeatedValue: 0)
+    private (set) var stack: [Opcode.Address] = Array(repeating: 0, count: 16)
     private (set) var sp: Opcode.Address = 0x0
     private (set) var delayTimer: UInt8 = 0x0
     private (set) var soundTimer: UInt8 = 0x0
     private (set) var screen = Screen()
-    private (set) var keypad = [Bool](count: 16, repeatedValue: false)
+    private (set) var keypad = [Bool](repeating: false, count: 16)
     private (set) var lastPressedKey: Key?
 
     // See http://devernay.free.fr/hacks/chip8/C8TECH10.HTM
@@ -77,7 +77,7 @@ final class Emulator {
 
     //MARK: Init
     init(rom: Rom) {
-        memory.replaceRange(Int(pc)..<Int(pc) + rom.bytes.count, with: rom.bytes)
+        memory.replaceSubrange(Int(pc)..<Int(pc) + rom.bytes.count, with: rom.bytes)
     }
 
     func resume() {
@@ -93,7 +93,7 @@ final class Emulator {
 
 extension Emulator {
     //MARK: Emulation
-    private func cycle() {
+    public func cycle() {
         let rawOpcode = (Opcode.Address(memory[Int(pc)]) << 8) | (Opcode.Address(memory[Int(pc) + 1]))
         guard let opcode = Opcode(rawOpcode: rawOpcode) else {
             print("Invalid opcode: 0x\(String(rawOpcode, radix: 16, uppercase: true))")
@@ -194,10 +194,10 @@ extension Emulator {
             shouldIncrementPC = false
 
         case let .AndRandom(x, value):
-            registers[Int(x)] = UInt8(rand() % UINT8_MAX) & value
+            registers[Int(x)] = UInt8(arc4random_uniform(UInt32(UINT8_MAX))) & value
 
         case let .Draw(x, y, rows):
-            draw(x, y: y, rows: rows)
+            draw(x: x, y: y, rows: rows)
             shouldRedraw = true
 
         case let .SkipIfKeyPressed(x):
@@ -317,7 +317,7 @@ extension Emulator {
                 // Look at MSB pixel and continue if it is 1
                 if (pixelData & 0x80) != 0 {
                     registers[0xF] = 0
-                    if screen.togglePixel(startX + column, y: startY + row) == 1 {
+                    if screen.togglePixel(x: startX + column, y: startY + row) == 1 {
                         registers[0xF] = 1
                     }
                 }

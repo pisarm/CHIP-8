@@ -14,41 +14,41 @@ final class Rom {
 
     //MARK: Initialization
     init(data: NSData) {
-        let bytesPtr = unsafeBitCast(data.bytes, UnsafePointer<UInt8>.self)
+        let bytesPtr = unsafeBitCast(data.bytes, to: UnsafePointer<UInt8>.self)
         let bytesBufferPtr = UnsafeBufferPointer(start: bytesPtr, count: data.length)
         self.bytes = [UInt8](bytesBufferPtr)
 
-        findKeys()
+//        findKeys()
     }
 
     init(bytes: [UInt8]) {
         self.bytes = bytes
 
-findKeys()
+//        findKeys()
     }
 
-    private func findKeys() {
-        for index in 0.stride(to: bytes.count, by: 2) {
-            let rawOpcode = (Opcode.Address(bytes[index]) << 8) | (Opcode.Address(bytes[index + 1]))
-            guard let opcode = Opcode(rawOpcode: rawOpcode) else {
-                print("Invalid opcode: 0x\(String(rawOpcode, radix: 16, uppercase: true))")
-                continue
-            }
-
-            switch opcode {
-            case let .SetValue(x, value):
-                print("V\(x) = \(value)")
-            case let .SkipIfKeyPressed(x):
-                print("pressed : V\(x)")
-            case let .SkipIfKeyNotPressed(x):
-                print("!pressed : V\(x)")
-            default:
-                break
-            }
-
-
-        }
-    }
+//    private func findKeys() {
+//        for index in 0.stride(to: bytes.count, by: 2) {
+//            let rawOpcode = (Opcode.Address(bytes[index]) << 8) | (Opcode.Address(bytes[index + 1]))
+//            guard let opcode = Opcode(rawOpcode: rawOpcode) else {
+//                print("Invalid opcode: 0x\(String(rawOpcode, radix: 16, uppercase: true))")
+//                continue
+//            }
+//
+//            switch opcode {
+//            case let .SetValue(x, value):
+//                print("V\(x) = \(value)")
+//            case let .SkipIfKeyPressed(x):
+//                print("pressed : V\(x)")
+//            case let .SkipIfKeyNotPressed(x):
+//                print("!pressed : V\(x)")
+//            default:
+//                break
+//            }
+//
+//
+//        }
+//    }
 
     //TODO: init with array of Opcode objects
 

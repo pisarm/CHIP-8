@@ -20,7 +20,7 @@ struct Screen {
     }
 
     private static func commonInit() -> ([UInt8]) {
-        return [UInt8](count: Int(Screen.rowCount) * Int(Screen.columnCount), repeatedValue: 0)
+        return [UInt8](repeating: 0, count: Int(Screen.rowCount) * Int(Screen.columnCount))
     }
 
     /**

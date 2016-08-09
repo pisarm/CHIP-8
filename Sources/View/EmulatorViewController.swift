@@ -22,10 +22,14 @@ final class EmulatorViewController: UIViewController {
         return skView
     }()
 
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        if let gameUrl = NSBundle(forClass: self.dynamicType).URLForResource("Blinky", withExtension: "ch8"), data = NSData(contentsOfURL: gameUrl) {
+        if let gameUrl = Bundle(for: self.dynamicType).url(forResource: "Blinky", withExtension: "ch8"), let data = try? Data(contentsOf: gameUrl) {
             emulator = Emulator(rom: Rom(data: data))
             emulator?.delegate = self
         } else {
@@ -41,10 +45,10 @@ final class EmulatorViewController: UIViewController {
     }
 
     private func setupConstraints() {
-        skView.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor, constant: 100).active = true
-        skView.topAnchor.constraintEqualToAnchor(view.topAnchor).active = true
-        skView.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor, constant: -100).active = true
-        skView.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor).active = true
+        skView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100).isActive = true
+        skView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        skView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100).isActive = true
+        skView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
     }
 
     override func viewWillLayoutSubviews() {
@@ -60,7 +64,7 @@ final class EmulatorViewController: UIViewController {
         skView.presentScene(screenScene)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         guard let emulator = emulator else {
@@ -69,10 +73,6 @@ final class EmulatorViewController: UIViewController {
 
         emulator.resume()
     }
-
-    override func prefersStatusBarHidden() -> Bool {
-        return true
-    }
 }
 
 extension EmulatorViewController: EmulatorDelegate {
@@ -80,7 +80,7 @@ extension EmulatorViewController: EmulatorDelegate {
         //TODO: Implement
     }
 
-    func draw(screen screen: Screen) {
+    func draw(screen: Screen) {
         screenScene?.screen = screen
     }
 }

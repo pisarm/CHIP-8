@@ -13,8 +13,8 @@ import UIKit
 final class ScreenScene: SKScene {
     var screen: Screen {
         didSet {
-            for (index, pixel) in screen.pixels.enumerate() {
-                self.pixels[index].color = pixel == 0 ? .blackColor() : .whiteColor()
+            for (index, pixel) in screen.pixels.enumerated() {
+                self.pixels[index].color = pixel == 0 ? .black : .white
             }
         }
     }
@@ -36,7 +36,7 @@ final class ScreenScene: SKScene {
         for row in 0..<Screen.rowCount {
             for col in 0..<Screen.columnCount {
 
-                var color = UIColor.blackColor()
+                var color = UIColor.black
 //                if row == 0 || col == 0 || row == Screen.rowCount-1 || col == Screen.columnCount-1 {
 //                    color = UIColor.whiteColor()
 //                }

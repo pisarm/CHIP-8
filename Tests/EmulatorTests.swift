@@ -28,7 +28,7 @@ final class EmulatorTests: XCTestCase {
             0x11, 0x23,
             ]
 
-        XCTAssertEqual(emulate(bytes).pc, 0x123)
+        XCTAssertEqual(emulate(bytes: bytes).pc, 0x123)
     }
 
     func testCallSubroutine() {
@@ -41,7 +41,7 @@ final class EmulatorTests: XCTestCase {
             0x30, 0x11,
             ]
 
-        XCTAssertEqual(emulate(bytes).pc, 0x206)
+        XCTAssertEqual(emulate(bytes: bytes).pc, 0x206)
     }
 
     func testSkipIfNotEqualValue() {
@@ -50,7 +50,7 @@ final class EmulatorTests: XCTestCase {
             0x40, 0x12,
             ]
 
-        XCTAssertEqual(emulate(bytes).pc, 0x206)
+        XCTAssertEqual(emulate(bytes: bytes).pc, 0x206)
     }
 
     func testSkipIfRegisterEqual() {
@@ -62,10 +62,10 @@ final class EmulatorTests: XCTestCase {
             0x60, 0x11,
             ]
 
-        var expectedRegisters = [UInt8](count: 16, repeatedValue: 0)
-        expectedRegisters.replaceRange(0..<1, with: [0x11])
+        var expectedRegisters = [UInt8](repeating: 0, count: 16)
+        expectedRegisters.replaceSubrange(0..<1, with: [0x11])
 
-        XCTAssertEqual(emulate(bytes).registers, expectedRegisters)
+        XCTAssertEqual(emulate(bytes: bytes).registers, expectedRegisters)
     }
 
     func testAddValue() {
@@ -74,23 +74,23 @@ final class EmulatorTests: XCTestCase {
             0x70, 0x1
             ]
 
-        var expectedRegisters = [UInt8](count: 16, repeatedValue: 0)
-        expectedRegisters.replaceRange(0..<1, with: [0x12])
+        var expectedRegisters = [UInt8](repeating: 0, count: 16)
+        expectedRegisters.replaceSubrange(0..<1, with: [0x12])
 
-        XCTAssertEqual(emulate(bytes).registers, expectedRegisters)
+        XCTAssertEqual(emulate(bytes: bytes).registers, expectedRegisters)
     }
 
-    func testDraw() {
-        let bytes: [UInt8] = [
-            0x60, 0x11,
-        ]
-
-        var expectations = [UInt8](count: Emulator.Screen.size, repeatedValue: 0)
-
-        XCTFail()
-
-        XCTAssertEqual(emulate(bytes).screen.content, expectations)
-    }
+//    func testDraw() {
+//        let bytes: [UInt8] = [
+//            0x60, 0x11,
+//        ]
+//
+//        var expectations = [UInt8](repeating: 0, count: Screen.size)
+//
+//        XCTFail()
+//
+//        XCTAssertEqual(emulate(bytes).screen.content, expectations)
+//    }
 
     func testSkipIfKeyPressed() {
         XCTFail()
