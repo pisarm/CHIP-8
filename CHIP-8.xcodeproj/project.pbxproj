@@ -7,25 +7,50 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E40F4BC71D1F118000A471FC /* Maze.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E40F4BC61D1F118000A471FC /* Maze.ch8 */; };
+		E40B029C1D5B55AB00314EDB /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40B029B1D5B55AB00314EDB /* AppController.swift */; };
 		E4363E8B1D1B34F600776047 /* EmulatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4363E8A1D1B34F600776047 /* EmulatorTests.swift */; };
-		E439E3B51D2143B500B4F53C /* ParticleDemo.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E439E3B41D2143B500B4F53C /* ParticleDemo.ch8 */; };
-		E439E3B71D2168FF00B4F53C /* Sierpinski.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E439E3B61D2168FF00B4F53C /* Sierpinski.ch8 */; };
-		E439E3B91D216A3600B4F53C /* Trip8.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E439E3B81D216A3600B4F53C /* Trip8.ch8 */; };
+		E440EA651D5C9AA900AF4FDB /* 15Puzzle.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA421D5C9AA900AF4FDB /* 15Puzzle.ch8 */; };
+		E440EA661D5C9AA900AF4FDB /* Airplane.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA431D5C9AA900AF4FDB /* Airplane.ch8 */; };
+		E440EA671D5C9AA900AF4FDB /* Blinky.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA441D5C9AA900AF4FDB /* Blinky.ch8 */; };
+		E440EA681D5C9AA900AF4FDB /* Blitz.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA451D5C9AA900AF4FDB /* Blitz.ch8 */; };
+		E440EA691D5C9AA900AF4FDB /* Breakout.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA461D5C9AA900AF4FDB /* Breakout.ch8 */; };
+		E440EA6A1D5C9AA900AF4FDB /* Brix.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA471D5C9AA900AF4FDB /* Brix.ch8 */; };
+		E440EA6B1D5C9AA900AF4FDB /* Clock.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA481D5C9AA900AF4FDB /* Clock.ch8 */; };
+		E440EA6C1D5C9AA900AF4FDB /* Connect4.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA491D5C9AA900AF4FDB /* Connect4.ch8 */; };
+		E440EA6D1D5C9AAA00AF4FDB /* Fishie.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA4A1D5C9AA900AF4FDB /* Fishie.ch8 */; };
+		E440EA6E1D5C9AAA00AF4FDB /* Framed1.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA4B1D5C9AA900AF4FDB /* Framed1.ch8 */; };
+		E440EA6F1D5C9AAA00AF4FDB /* Framed2.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA4C1D5C9AA900AF4FDB /* Framed2.ch8 */; };
+		E440EA701D5C9AAA00AF4FDB /* Guess.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA4D1D5C9AA900AF4FDB /* Guess.ch8 */; };
+		E440EA711D5C9AAA00AF4FDB /* Hidden.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA4E1D5C9AA900AF4FDB /* Hidden.ch8 */; };
+		E440EA721D5C9AAA00AF4FDB /* Invaders.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA4F1D5C9AA900AF4FDB /* Invaders.ch8 */; };
+		E440EA731D5C9AAA00AF4FDB /* Kaleid.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA501D5C9AA900AF4FDB /* Kaleid.ch8 */; };
+		E440EA741D5C9AAA00AF4FDB /* Maze.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA511D5C9AA900AF4FDB /* Maze.ch8 */; };
+		E440EA751D5C9AAA00AF4FDB /* Merlin.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA521D5C9AA900AF4FDB /* Merlin.ch8 */; };
+		E440EA761D5C9AAA00AF4FDB /* Missile.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA531D5C9AA900AF4FDB /* Missile.ch8 */; };
+		E440EA771D5C9AAA00AF4FDB /* Particles.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA541D5C9AA900AF4FDB /* Particles.ch8 */; };
+		E440EA781D5C9AAA00AF4FDB /* Pong.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA551D5C9AA900AF4FDB /* Pong.ch8 */; };
+		E440EA791D5C9AAA00AF4FDB /* Pong2.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA561D5C9AA900AF4FDB /* Pong2.ch8 */; };
+		E440EA7A1D5C9AAA00AF4FDB /* Puzzle.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA571D5C9AA900AF4FDB /* Puzzle.ch8 */; };
+		E440EA7B1D5C9AAA00AF4FDB /* Sierpinski.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA581D5C9AA900AF4FDB /* Sierpinski.ch8 */; };
+		E440EA7C1D5C9AAA00AF4FDB /* Squash.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA591D5C9AA900AF4FDB /* Squash.ch8 */; };
+		E440EA7D1D5C9AAA00AF4FDB /* Syzygy.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA5A1D5C9AA900AF4FDB /* Syzygy.ch8 */; };
+		E440EA7E1D5C9AAA00AF4FDB /* Tank.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA5B1D5C9AA900AF4FDB /* Tank.ch8 */; };
+		E440EA7F1D5C9AAA00AF4FDB /* Tetris.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA5C1D5C9AA900AF4FDB /* Tetris.ch8 */; };
+		E440EA801D5C9AAA00AF4FDB /* Tictac.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA5D1D5C9AA900AF4FDB /* Tictac.ch8 */; };
+		E440EA811D5C9AAA00AF4FDB /* Trip8.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA5E1D5C9AA900AF4FDB /* Trip8.ch8 */; };
+		E440EA821D5C9AAA00AF4FDB /* Ufo.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA5F1D5C9AA900AF4FDB /* Ufo.ch8 */; };
+		E440EA831D5C9AAA00AF4FDB /* Vbrix.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA601D5C9AA900AF4FDB /* Vbrix.ch8 */; };
+		E440EA841D5C9AAA00AF4FDB /* Vers.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA611D5C9AA900AF4FDB /* Vers.ch8 */; };
+		E440EA851D5C9AAA00AF4FDB /* Wall.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA621D5C9AA900AF4FDB /* Wall.ch8 */; };
+		E440EA861D5C9AAA00AF4FDB /* Wipeoff.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA631D5C9AA900AF4FDB /* Wipeoff.ch8 */; };
+		E440EA871D5C9AAA00AF4FDB /* ZeroDemo.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E440EA641D5C9AA900AF4FDB /* ZeroDemo.ch8 */; };
 		E44A9A321D14AD4100B9139F /* RawOpcodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E44A9A311D14AD4100B9139F /* RawOpcodeTests.swift */; };
-		E44FAC0B1D2D94BD007AD1E3 /* Airplane.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E44FAC0A1D2D94BD007AD1E3 /* Airplane.ch8 */; };
-		E44FAC0D1D2DB036007AD1E3 /* Blinky.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E44FAC0C1D2DB036007AD1E3 /* Blinky.ch8 */; };
 		E45443371D21BF1F005E0310 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45443361D21BF1F005E0310 /* Timer.swift */; };
-		E473E2951D2306EB00F756C7 /* Fishie.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E473E2911D2306EB00F756C7 /* Fishie.ch8 */; };
-		E473E2961D2306EB00F756C7 /* Framed1.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E473E2921D2306EB00F756C7 /* Framed1.ch8 */; };
-		E473E2971D2306EB00F756C7 /* Framed2.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E473E2931D2306EB00F756C7 /* Framed2.ch8 */; };
-		E473E2981D2306EB00F756C7 /* ZeroDemo.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E473E2941D2306EB00F756C7 /* ZeroDemo.ch8 */; };
 		E47F4E701D18957F001AF3EC /* Rom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47F4E6F1D18957F001AF3EC /* Rom.swift */; };
 		E47F4E721D189B44001AF3EC /* RomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47F4E711D189B44001AF3EC /* RomTests.swift */; };
 		E4BE6B1F1D2840BB00F42B12 /* ScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BE6B1E1D2840BB00F42B12 /* ScreenScene.swift */; };
 		E4BE6B211D2841B000F42B12 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BE6B201D2841B000F42B12 /* Screen.swift */; };
 		E4BE6B231D287F0F00F42B12 /* EmulatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BE6B221D287F0F00F42B12 /* EmulatorViewController.swift */; };
-		E4DCE3E21D2261F300409FA9 /* Clock.ch8 in Resources */ = {isa = PBXBuildFile; fileRef = E4DCE3E11D2261F300409FA9 /* Clock.ch8 */; };
 		E4F3D90F1D11EC7000899F56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3D90D1D11EC7000899F56 /* AppDelegate.swift */; };
 		E4F3D9121D11ECA700899F56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F3D9111D11ECA700899F56 /* LaunchScreen.storyboard */; };
 		E4F3D9141D11ECAE00899F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F3D9131D11ECAE00899F56 /* Assets.xcassets */; };
@@ -44,25 +69,50 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E40F4BC61D1F118000A471FC /* Maze.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Maze.ch8; sourceTree = "<group>"; };
+		E40B029B1D5B55AB00314EDB /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		E4363E8A1D1B34F600776047 /* EmulatorTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmulatorTests.swift; sourceTree = "<group>"; };
-		E439E3B41D2143B500B4F53C /* ParticleDemo.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ParticleDemo.ch8; sourceTree = "<group>"; };
-		E439E3B61D2168FF00B4F53C /* Sierpinski.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sierpinski.ch8; sourceTree = "<group>"; };
-		E439E3B81D216A3600B4F53C /* Trip8.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Trip8.ch8; sourceTree = "<group>"; };
+		E440EA421D5C9AA900AF4FDB /* 15Puzzle.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = 15Puzzle.ch8; sourceTree = "<group>"; };
+		E440EA431D5C9AA900AF4FDB /* Airplane.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Airplane.ch8; sourceTree = "<group>"; };
+		E440EA441D5C9AA900AF4FDB /* Blinky.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Blinky.ch8; sourceTree = "<group>"; };
+		E440EA451D5C9AA900AF4FDB /* Blitz.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Blitz.ch8; sourceTree = "<group>"; };
+		E440EA461D5C9AA900AF4FDB /* Breakout.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Breakout.ch8; sourceTree = "<group>"; };
+		E440EA471D5C9AA900AF4FDB /* Brix.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Brix.ch8; sourceTree = "<group>"; };
+		E440EA481D5C9AA900AF4FDB /* Clock.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Clock.ch8; sourceTree = "<group>"; };
+		E440EA491D5C9AA900AF4FDB /* Connect4.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Connect4.ch8; sourceTree = "<group>"; };
+		E440EA4A1D5C9AA900AF4FDB /* Fishie.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fishie.ch8; sourceTree = "<group>"; };
+		E440EA4B1D5C9AA900AF4FDB /* Framed1.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Framed1.ch8; sourceTree = "<group>"; };
+		E440EA4C1D5C9AA900AF4FDB /* Framed2.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Framed2.ch8; sourceTree = "<group>"; };
+		E440EA4D1D5C9AA900AF4FDB /* Guess.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Guess.ch8; sourceTree = "<group>"; };
+		E440EA4E1D5C9AA900AF4FDB /* Hidden.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Hidden.ch8; sourceTree = "<group>"; };
+		E440EA4F1D5C9AA900AF4FDB /* Invaders.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Invaders.ch8; sourceTree = "<group>"; };
+		E440EA501D5C9AA900AF4FDB /* Kaleid.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Kaleid.ch8; sourceTree = "<group>"; };
+		E440EA511D5C9AA900AF4FDB /* Maze.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Maze.ch8; sourceTree = "<group>"; };
+		E440EA521D5C9AA900AF4FDB /* Merlin.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Merlin.ch8; sourceTree = "<group>"; };
+		E440EA531D5C9AA900AF4FDB /* Missile.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Missile.ch8; sourceTree = "<group>"; };
+		E440EA541D5C9AA900AF4FDB /* Particles.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Particles.ch8; sourceTree = "<group>"; };
+		E440EA551D5C9AA900AF4FDB /* Pong.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pong.ch8; sourceTree = "<group>"; };
+		E440EA561D5C9AA900AF4FDB /* Pong2.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Pong2.ch8; sourceTree = "<group>"; };
+		E440EA571D5C9AA900AF4FDB /* Puzzle.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Puzzle.ch8; sourceTree = "<group>"; };
+		E440EA581D5C9AA900AF4FDB /* Sierpinski.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sierpinski.ch8; sourceTree = "<group>"; };
+		E440EA591D5C9AA900AF4FDB /* Squash.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Squash.ch8; sourceTree = "<group>"; };
+		E440EA5A1D5C9AA900AF4FDB /* Syzygy.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Syzygy.ch8; sourceTree = "<group>"; };
+		E440EA5B1D5C9AA900AF4FDB /* Tank.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tank.ch8; sourceTree = "<group>"; };
+		E440EA5C1D5C9AA900AF4FDB /* Tetris.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tetris.ch8; sourceTree = "<group>"; };
+		E440EA5D1D5C9AA900AF4FDB /* Tictac.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Tictac.ch8; sourceTree = "<group>"; };
+		E440EA5E1D5C9AA900AF4FDB /* Trip8.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Trip8.ch8; sourceTree = "<group>"; };
+		E440EA5F1D5C9AA900AF4FDB /* Ufo.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ufo.ch8; sourceTree = "<group>"; };
+		E440EA601D5C9AA900AF4FDB /* Vbrix.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vbrix.ch8; sourceTree = "<group>"; };
+		E440EA611D5C9AA900AF4FDB /* Vers.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Vers.ch8; sourceTree = "<group>"; };
+		E440EA621D5C9AA900AF4FDB /* Wall.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Wall.ch8; sourceTree = "<group>"; };
+		E440EA631D5C9AA900AF4FDB /* Wipeoff.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Wipeoff.ch8; sourceTree = "<group>"; };
+		E440EA641D5C9AA900AF4FDB /* ZeroDemo.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZeroDemo.ch8; sourceTree = "<group>"; };
 		E44A9A311D14AD4100B9139F /* RawOpcodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawOpcodeTests.swift; sourceTree = "<group>"; };
-		E44FAC0A1D2D94BD007AD1E3 /* Airplane.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Airplane.ch8; sourceTree = "<group>"; };
-		E44FAC0C1D2DB036007AD1E3 /* Blinky.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Blinky.ch8; sourceTree = "<group>"; };
 		E45443361D21BF1F005E0310 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
-		E473E2911D2306EB00F756C7 /* Fishie.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fishie.ch8; sourceTree = "<group>"; };
-		E473E2921D2306EB00F756C7 /* Framed1.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Framed1.ch8; sourceTree = "<group>"; };
-		E473E2931D2306EB00F756C7 /* Framed2.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Framed2.ch8; sourceTree = "<group>"; };
-		E473E2941D2306EB00F756C7 /* ZeroDemo.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = ZeroDemo.ch8; sourceTree = "<group>"; };
 		E47F4E6F1D18957F001AF3EC /* Rom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rom.swift; sourceTree = "<group>"; };
 		E47F4E711D189B44001AF3EC /* RomTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RomTests.swift; sourceTree = "<group>"; };
 		E4BE6B1E1D2840BB00F42B12 /* ScreenScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenScene.swift; sourceTree = "<group>"; };
 		E4BE6B201D2841B000F42B12 /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
 		E4BE6B221D287F0F00F42B12 /* EmulatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmulatorViewController.swift; sourceTree = "<group>"; };
-		E4DCE3E11D2261F300409FA9 /* Clock.ch8 */ = {isa = PBXFileReference; lastKnownFileType = file; path = Clock.ch8; sourceTree = "<group>"; };
 		E4F3D8E51D11EB0600899F56 /* CHIP-8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CHIP-8.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F3D8F91D11EB0600899F56 /* CHIP-8Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CHIP-8Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F3D90D1D11EC7000899F56 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +142,48 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E40B029D1D5B588E00314EDB /* ROMs */ = {
+			isa = PBXGroup;
+			children = (
+				E440EA421D5C9AA900AF4FDB /* 15Puzzle.ch8 */,
+				E440EA431D5C9AA900AF4FDB /* Airplane.ch8 */,
+				E440EA441D5C9AA900AF4FDB /* Blinky.ch8 */,
+				E440EA451D5C9AA900AF4FDB /* Blitz.ch8 */,
+				E440EA461D5C9AA900AF4FDB /* Breakout.ch8 */,
+				E440EA471D5C9AA900AF4FDB /* Brix.ch8 */,
+				E440EA481D5C9AA900AF4FDB /* Clock.ch8 */,
+				E440EA491D5C9AA900AF4FDB /* Connect4.ch8 */,
+				E440EA4A1D5C9AA900AF4FDB /* Fishie.ch8 */,
+				E440EA4B1D5C9AA900AF4FDB /* Framed1.ch8 */,
+				E440EA4C1D5C9AA900AF4FDB /* Framed2.ch8 */,
+				E440EA4D1D5C9AA900AF4FDB /* Guess.ch8 */,
+				E440EA4E1D5C9AA900AF4FDB /* Hidden.ch8 */,
+				E440EA4F1D5C9AA900AF4FDB /* Invaders.ch8 */,
+				E440EA501D5C9AA900AF4FDB /* Kaleid.ch8 */,
+				E440EA511D5C9AA900AF4FDB /* Maze.ch8 */,
+				E440EA521D5C9AA900AF4FDB /* Merlin.ch8 */,
+				E440EA531D5C9AA900AF4FDB /* Missile.ch8 */,
+				E440EA541D5C9AA900AF4FDB /* Particles.ch8 */,
+				E440EA551D5C9AA900AF4FDB /* Pong.ch8 */,
+				E440EA561D5C9AA900AF4FDB /* Pong2.ch8 */,
+				E440EA571D5C9AA900AF4FDB /* Puzzle.ch8 */,
+				E440EA581D5C9AA900AF4FDB /* Sierpinski.ch8 */,
+				E440EA591D5C9AA900AF4FDB /* Squash.ch8 */,
+				E440EA5A1D5C9AA900AF4FDB /* Syzygy.ch8 */,
+				E440EA5B1D5C9AA900AF4FDB /* Tank.ch8 */,
+				E440EA5C1D5C9AA900AF4FDB /* Tetris.ch8 */,
+				E440EA5D1D5C9AA900AF4FDB /* Tictac.ch8 */,
+				E440EA5E1D5C9AA900AF4FDB /* Trip8.ch8 */,
+				E440EA5F1D5C9AA900AF4FDB /* Ufo.ch8 */,
+				E440EA601D5C9AA900AF4FDB /* Vbrix.ch8 */,
+				E440EA611D5C9AA900AF4FDB /* Vers.ch8 */,
+				E440EA621D5C9AA900AF4FDB /* Wall.ch8 */,
+				E440EA631D5C9AA900AF4FDB /* Wipeoff.ch8 */,
+				E440EA641D5C9AA900AF4FDB /* ZeroDemo.ch8 */,
+			);
+			path = ROMs;
+			sourceTree = "<group>";
+		};
 		E4433BCA1D271F3F00D4DD3C /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -136,6 +228,7 @@
 				E4F3D91D1D11ED4F00899F56 /* Emulator */,
 				E45443351D21BF00005E0310 /* Helpers */,
 				E4433BCA1D271F3F00D4DD3C /* View */,
+				E40B029B1D5B55AB00314EDB /* AppController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -153,19 +246,9 @@
 		E4F3D90A1D11EB2100899F56 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E44FAC0A1D2D94BD007AD1E3 /* Airplane.ch8 */,
+				E40B029D1D5B588E00314EDB /* ROMs */,
 				E4F3D9131D11ECAE00899F56 /* Assets.xcassets */,
-				E44FAC0C1D2DB036007AD1E3 /* Blinky.ch8 */,
-				E4DCE3E11D2261F300409FA9 /* Clock.ch8 */,
-				E473E2911D2306EB00F756C7 /* Fishie.ch8 */,
-				E473E2921D2306EB00F756C7 /* Framed1.ch8 */,
-				E473E2931D2306EB00F756C7 /* Framed2.ch8 */,
 				E4F3D9111D11ECA700899F56 /* LaunchScreen.storyboard */,
-				E40F4BC61D1F118000A471FC /* Maze.ch8 */,
-				E439E3B41D2143B500B4F53C /* ParticleDemo.ch8 */,
-				E439E3B61D2168FF00B4F53C /* Sierpinski.ch8 */,
-				E439E3B81D216A3600B4F53C /* Trip8.ch8 */,
-				E473E2941D2306EB00F756C7 /* ZeroDemo.ch8 */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -273,19 +356,43 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E44FAC0B1D2D94BD007AD1E3 /* Airplane.ch8 in Resources */,
+				E440EA871D5C9AAA00AF4FDB /* ZeroDemo.ch8 in Resources */,
+				E440EA771D5C9AAA00AF4FDB /* Particles.ch8 in Resources */,
+				E440EA6E1D5C9AAA00AF4FDB /* Framed1.ch8 in Resources */,
+				E440EA821D5C9AAA00AF4FDB /* Ufo.ch8 in Resources */,
+				E440EA7B1D5C9AAA00AF4FDB /* Sierpinski.ch8 in Resources */,
+				E440EA701D5C9AAA00AF4FDB /* Guess.ch8 in Resources */,
+				E440EA7D1D5C9AAA00AF4FDB /* Syzygy.ch8 in Resources */,
+				E440EA731D5C9AAA00AF4FDB /* Kaleid.ch8 in Resources */,
 				E4F3D9141D11ECAE00899F56 /* Assets.xcassets in Resources */,
-				E44FAC0D1D2DB036007AD1E3 /* Blinky.ch8 in Resources */,
-				E4DCE3E21D2261F300409FA9 /* Clock.ch8 in Resources */,
-				E473E2951D2306EB00F756C7 /* Fishie.ch8 in Resources */,
-				E473E2961D2306EB00F756C7 /* Framed1.ch8 in Resources */,
-				E473E2971D2306EB00F756C7 /* Framed2.ch8 in Resources */,
+				E440EA791D5C9AAA00AF4FDB /* Pong2.ch8 in Resources */,
+				E440EA661D5C9AA900AF4FDB /* Airplane.ch8 in Resources */,
 				E4F3D9121D11ECA700899F56 /* LaunchScreen.storyboard in Resources */,
-				E40F4BC71D1F118000A471FC /* Maze.ch8 in Resources */,
-				E439E3B51D2143B500B4F53C /* ParticleDemo.ch8 in Resources */,
-				E439E3B71D2168FF00B4F53C /* Sierpinski.ch8 in Resources */,
-				E439E3B91D216A3600B4F53C /* Trip8.ch8 in Resources */,
-				E473E2981D2306EB00F756C7 /* ZeroDemo.ch8 in Resources */,
+				E440EA741D5C9AAA00AF4FDB /* Maze.ch8 in Resources */,
+				E440EA681D5C9AA900AF4FDB /* Blitz.ch8 in Resources */,
+				E440EA6D1D5C9AAA00AF4FDB /* Fishie.ch8 in Resources */,
+				E440EA671D5C9AA900AF4FDB /* Blinky.ch8 in Resources */,
+				E440EA691D5C9AA900AF4FDB /* Breakout.ch8 in Resources */,
+				E440EA811D5C9AAA00AF4FDB /* Trip8.ch8 in Resources */,
+				E440EA841D5C9AAA00AF4FDB /* Vers.ch8 in Resources */,
+				E440EA7E1D5C9AAA00AF4FDB /* Tank.ch8 in Resources */,
+				E440EA7C1D5C9AAA00AF4FDB /* Squash.ch8 in Resources */,
+				E440EA801D5C9AAA00AF4FDB /* Tictac.ch8 in Resources */,
+				E440EA831D5C9AAA00AF4FDB /* Vbrix.ch8 in Resources */,
+				E440EA721D5C9AAA00AF4FDB /* Invaders.ch8 in Resources */,
+				E440EA751D5C9AAA00AF4FDB /* Merlin.ch8 in Resources */,
+				E440EA6A1D5C9AA900AF4FDB /* Brix.ch8 in Resources */,
+				E440EA711D5C9AAA00AF4FDB /* Hidden.ch8 in Resources */,
+				E440EA6C1D5C9AA900AF4FDB /* Connect4.ch8 in Resources */,
+				E440EA781D5C9AAA00AF4FDB /* Pong.ch8 in Resources */,
+				E440EA6B1D5C9AA900AF4FDB /* Clock.ch8 in Resources */,
+				E440EA7F1D5C9AAA00AF4FDB /* Tetris.ch8 in Resources */,
+				E440EA851D5C9AAA00AF4FDB /* Wall.ch8 in Resources */,
+				E440EA651D5C9AA900AF4FDB /* 15Puzzle.ch8 in Resources */,
+				E440EA861D5C9AAA00AF4FDB /* Wipeoff.ch8 in Resources */,
+				E440EA7A1D5C9AAA00AF4FDB /* Puzzle.ch8 in Resources */,
+				E440EA761D5C9AAA00AF4FDB /* Missile.ch8 in Resources */,
+				E440EA6F1D5C9AAA00AF4FDB /* Framed2.ch8 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +432,7 @@
 				E4BE6B231D287F0F00F42B12 /* EmulatorViewController.swift in Sources */,
 				E4F3D9211D11EDCA00899F56 /* Opcode.swift in Sources */,
 				E47F4E701D18957F001AF3EC /* Rom.swift in Sources */,
+				E40B029C1D5B55AB00314EDB /* AppController.swift in Sources */,
 				E4BE6B211D2841B000F42B12 /* Screen.swift in Sources */,
 				E4BE6B1F1D2840BB00F42B12 /* ScreenScene.swift in Sources */,
 				E45443371D21BF1F005E0310 /* Timer.swift in Sources */,
