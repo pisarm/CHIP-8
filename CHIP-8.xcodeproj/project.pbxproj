@@ -48,9 +48,13 @@
 		E45443371D21BF1F005E0310 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E45443361D21BF1F005E0310 /* Timer.swift */; };
 		E47F4E701D18957F001AF3EC /* Rom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47F4E6F1D18957F001AF3EC /* Rom.swift */; };
 		E47F4E721D189B44001AF3EC /* RomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E47F4E711D189B44001AF3EC /* RomTests.swift */; };
-		E4BE6B1F1D2840BB00F42B12 /* ScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BE6B1E1D2840BB00F42B12 /* ScreenScene.swift */; };
 		E4BE6B211D2841B000F42B12 /* Screen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BE6B201D2841B000F42B12 /* Screen.swift */; };
-		E4BE6B231D287F0F00F42B12 /* EmulatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4BE6B221D287F0F00F42B12 /* EmulatorViewController.swift */; };
+		E4E86D141D5E75F400C99146 /* EmulatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E86D131D5E75F400C99146 /* EmulatorViewController.swift */; };
+		E4E86D161D5E75FE00C99146 /* ScreenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E86D151D5E75FE00C99146 /* ScreenScene.swift */; };
+		E4E86D181D5E760B00C99146 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E86D171D5E760B00C99146 /* MenuViewController.swift */; };
+		E4E86D1A1D5E761500C99146 /* PauseScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E86D191D5E761500C99146 /* PauseScene.swift */; };
+		E4E86D1C1D5E7EC500C99146 /* RomDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E86D1B1D5E7EC500C99146 /* RomDataSource.swift */; };
+		E4E86D1E1D5FAB3F00C99146 /* FileManager+Rom.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E86D1D1D5FAB3F00C99146 /* FileManager+Rom.swift */; };
 		E4F3D90F1D11EC7000899F56 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4F3D90D1D11EC7000899F56 /* AppDelegate.swift */; };
 		E4F3D9121D11ECA700899F56 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E4F3D9111D11ECA700899F56 /* LaunchScreen.storyboard */; };
 		E4F3D9141D11ECAE00899F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E4F3D9131D11ECAE00899F56 /* Assets.xcassets */; };
@@ -110,9 +114,13 @@
 		E45443361D21BF1F005E0310 /* Timer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
 		E47F4E6F1D18957F001AF3EC /* Rom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Rom.swift; sourceTree = "<group>"; };
 		E47F4E711D189B44001AF3EC /* RomTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RomTests.swift; sourceTree = "<group>"; };
-		E4BE6B1E1D2840BB00F42B12 /* ScreenScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenScene.swift; sourceTree = "<group>"; };
 		E4BE6B201D2841B000F42B12 /* Screen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Screen.swift; sourceTree = "<group>"; };
-		E4BE6B221D287F0F00F42B12 /* EmulatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmulatorViewController.swift; sourceTree = "<group>"; };
+		E4E86D131D5E75F400C99146 /* EmulatorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmulatorViewController.swift; sourceTree = "<group>"; };
+		E4E86D151D5E75FE00C99146 /* ScreenScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenScene.swift; sourceTree = "<group>"; };
+		E4E86D171D5E760B00C99146 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		E4E86D191D5E761500C99146 /* PauseScene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PauseScene.swift; sourceTree = "<group>"; };
+		E4E86D1B1D5E7EC500C99146 /* RomDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RomDataSource.swift; sourceTree = "<group>"; };
+		E4E86D1D1D5FAB3F00C99146 /* FileManager+Rom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FileManager+Rom.swift"; sourceTree = "<group>"; };
 		E4F3D8E51D11EB0600899F56 /* CHIP-8.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CHIP-8.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F3D8F91D11EB0600899F56 /* CHIP-8Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CHIP-8Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4F3D90D1D11EC7000899F56 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -184,21 +192,32 @@
 			path = ROMs;
 			sourceTree = "<group>";
 		};
-		E4433BCA1D271F3F00D4DD3C /* View */ = {
+		E4433BCA1D271F3F00D4DD3C /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E4BE6B221D287F0F00F42B12 /* EmulatorViewController.swift */,
-				E4BE6B1E1D2840BB00F42B12 /* ScreenScene.swift */,
+				E4E86D131D5E75F400C99146 /* EmulatorViewController.swift */,
+				E4E86D171D5E760B00C99146 /* MenuViewController.swift */,
 			);
-			path = View;
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 		E45443351D21BF00005E0310 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				E45443361D21BF1F005E0310 /* Timer.swift */,
+				E4E86D1B1D5E7EC500C99146 /* RomDataSource.swift */,
+				E4E86D1D1D5FAB3F00C99146 /* FileManager+Rom.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		E4E86D121D5E756C00C99146 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				E4E86D151D5E75FE00C99146 /* ScreenScene.swift */,
+				E4E86D191D5E761500C99146 /* PauseScene.swift */,
+			);
+			path = Scenes;
 			sourceTree = "<group>";
 		};
 		E4F3D8DC1D11EB0600899F56 = {
@@ -224,10 +243,11 @@
 		E4F3D9081D11EB1200899F56 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				E4E86D121D5E756C00C99146 /* Scenes */,
 				E4F3D90D1D11EC7000899F56 /* AppDelegate.swift */,
 				E4F3D91D1D11ED4F00899F56 /* Emulator */,
 				E45443351D21BF00005E0310 /* Helpers */,
-				E4433BCA1D271F3F00D4DD3C /* View */,
+				E4433BCA1D271F3F00D4DD3C /* ViewControllers */,
 				E40B029B1D5B55AB00314EDB /* AppController.swift */,
 			);
 			path = Sources;
@@ -427,15 +447,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4E86D1A1D5E761500C99146 /* PauseScene.swift in Sources */,
+				E4E86D161D5E75FE00C99146 /* ScreenScene.swift in Sources */,
+				E4E86D181D5E760B00C99146 /* MenuViewController.swift in Sources */,
+				E4E86D1C1D5E7EC500C99146 /* RomDataSource.swift in Sources */,
 				E4F3D90F1D11EC7000899F56 /* AppDelegate.swift in Sources */,
 				E4F3D91F1D11EDB800899F56 /* Emulator.swift in Sources */,
-				E4BE6B231D287F0F00F42B12 /* EmulatorViewController.swift in Sources */,
+				E4E86D1E1D5FAB3F00C99146 /* FileManager+Rom.swift in Sources */,
 				E4F3D9211D11EDCA00899F56 /* Opcode.swift in Sources */,
 				E47F4E701D18957F001AF3EC /* Rom.swift in Sources */,
 				E40B029C1D5B55AB00314EDB /* AppController.swift in Sources */,
 				E4BE6B211D2841B000F42B12 /* Screen.swift in Sources */,
-				E4BE6B1F1D2840BB00F42B12 /* ScreenScene.swift in Sources */,
 				E45443371D21BF1F005E0310 /* Timer.swift in Sources */,
+				E4E86D141D5E75F400C99146 /* EmulatorViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
