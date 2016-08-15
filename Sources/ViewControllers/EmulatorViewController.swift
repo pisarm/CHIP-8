@@ -22,19 +22,24 @@ final class EmulatorViewController: UIViewController {
         return skView
     }()
 
+
+    init(withRom rom: Rom) {
+        super.init(nibName: nil, bundle: nil)
+
+        emulator = Emulator(rom: rom)
+        emulator?.delegate = self
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override var prefersStatusBarHidden: Bool {
         return true
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let gameUrl = Bundle(for: self.dynamicType).url(forResource: "Blinky", withExtension: "ch8"), let data = try? Data(contentsOf: gameUrl) {
-            emulator = Emulator(rom: Rom(data: data))
-            emulator?.delegate = self
-        } else {
-            fatalError(".ch8 file not found")
-        }
 
         setupViews()
         setupConstraints()
@@ -45,14 +50,10 @@ final class EmulatorViewController: UIViewController {
     }
 
     private func setupConstraints() {
-        skView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 100).isActive = true
+        skView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         skView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        skView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -100).isActive = true
+        skView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         skView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-    }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
     }
 
     override func viewDidLayoutSubviews() {
@@ -60,7 +61,9 @@ final class EmulatorViewController: UIViewController {
             fatalError("No emulator")
         }
 
-        screenScene = ScreenScene(size: skView.bounds.size, screen: emulator.screen)
+        screenScene = ScreenScene(size: skView.bounds.size)
+        emulator.screen.delegate = screenScene
+
         skView.presentScene(screenScene)
     }
 
@@ -79,8 +82,5 @@ extension EmulatorViewController: EmulatorDelegate {
     func beep() {
         //TODO: Implement
     }
-
-    func draw(screen: Screen) {
-        screenScene?.screen = screen
-    }
+    
 }
