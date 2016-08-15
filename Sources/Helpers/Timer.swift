@@ -44,7 +44,7 @@ final class Timer {
 
      - parameter queue: Dispatch queue the handler should execute on
      - parameter interval: Interval at which the timer should tick
-     - parameter handler: Evaluated every tick of the timer
+     - parameter handler: Closure evaluated every tick of the timer
      */
     init(queue: DispatchQueue = DispatchQueue.global(qos: .default), interval: DispatchTimeInterval, handler: DispatchHandler) {
         self.queue = queue
@@ -87,7 +87,7 @@ final class Timer {
         guard isRunning else {
             return
         }
-        
+
         isRunning = false
         timer.suspend()
     }
