@@ -8,11 +8,19 @@
 
 import Foundation
 
-struct Screen {
+protocol ScreenDelegate: class {
+    func refreshed(index: Int, withValue: Int)
+    func reset()
+}
+
+final class Screen {
+    //MARK: Properties
     static let columnCount = 64
     static let rowCount = 32
 
-    private (set) var pixels: [UInt8]
+    weak var delegate: ScreenDelegate?
+
+    private var pixels: [UInt8]
 
     //MARK: Initialization
     init() {
@@ -28,8 +36,9 @@ struct Screen {
 
      Internal data structure is set to all zeros
      */
-    mutating func reset() {
+    func reset() {
         (pixels) = Screen.commonInit()
+        delegate?.reset()
     }
 
     /**
@@ -39,31 +48,17 @@ struct Screen {
      - parameter y: Y coordinate of the point to toggle
      - returns: Value of pixel **prior** to being toggled
      */
-    mutating func togglePixel(x: Int, y: Int) -> UInt8 {
+    func togglePixel(x: Int, y: Int) -> UInt8 {
         let sx = x % Screen.columnCount
         let sy = y % Screen.rowCount
         let index = (Int(sy) * Int(Screen.columnCount)) + Int(sx)
 
         let value = pixels[index]
         pixels[index] ^= 1
+
+        let newValue = Int(pixels[index])
+        delegate?.refreshed(index: index, withValue: newValue)
+
         return value
-    }
-
-    /**
-     Get the value of the pixel at the specified coordinate.
-
-     - parameter x: X-coordinate of the point to get
-     - parameter y: Y-coordinate of the point to get
-
-     - returns: Value of the pixel at x, y
-     */
-    subscript (x: Int, y: Int) -> UInt8 {
-        get {
-            let sx = x % Screen.columnCount
-            let sy = y % Screen.rowCount
-            let index = (Int(sy) * Int(Screen.columnCount)) + Int(sx)
-
-            return pixels[index]
-        }
     }
 }

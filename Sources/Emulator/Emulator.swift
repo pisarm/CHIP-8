@@ -10,14 +10,15 @@ import Foundation
 
 protocol EmulatorDelegate: class {
     func beep()
-    func draw(screen: Screen)
 }
 
 final class Emulator {
     weak var delegate: EmulatorDelegate?
-    //TODO: configurable cycleRate - change while running
-    lazy var cycleTimer: Timer = Timer(interval: .milliseconds(2), handler: { [weak self] in self?.cycle() })
-    lazy var tickTimer: Timer = Timer(interval: .milliseconds(20), handler: { [weak self] in self?.timerTick() })
+    //Default 500Hz but should be configurable - probably between 50-5000 microseconds
+    lazy var cycleTimer: Timer = Timer(interval: .microseconds(2000), handler: { [weak self] in self?.cycle() })
+
+    //Should run at 50Hz
+    private lazy var tickTimer: Timer = Timer(interval: .milliseconds(20), handler: { [weak self] in self?.timerTick() })
 
 
     // See http://devernay.free.fr/hacks/chip8/C8TECH10.HTM#keyboard
@@ -51,9 +52,9 @@ final class Emulator {
     private (set) var sp: Opcode.Address = 0x0
     private (set) var delayTimer: UInt8 = 0x0
     private (set) var soundTimer: UInt8 = 0x0
-    private (set) var screen = Screen()
     private (set) var keypad = [Bool](repeating: false, count: 16)
     private (set) var lastPressedKey: Key?
+    let screen = Screen()
 
     // See http://devernay.free.fr/hacks/chip8/C8TECH10.HTM
     private (set) static var fonts: [UInt8] = [
@@ -102,13 +103,11 @@ extension Emulator {
 //                print(String(opcode.rawOpcode, radix: 16, uppercase: true))
 
         var shouldIncrementPC = true
-        var shouldRedraw = false
 
         switch opcode {
 
         case .ClearScreen:
             screen.reset()
-            shouldRedraw = true
 
         case .Return:
             sp -= 1
@@ -198,7 +197,6 @@ extension Emulator {
 
         case let .Draw(x, y, rows):
             draw(x: x, y: y, rows: rows)
-            shouldRedraw = true
 
         case let .SkipIfKeyPressed(x):
             if keypad[Int(x)] == true {
@@ -256,19 +254,6 @@ extension Emulator {
             incrementPC()
         }
 
-        if shouldRedraw {
-            delegate?.draw(screen: screen)
-
-//            for row in 0..<Screen.rowCount {
-//                var str = ""
-//                for col in 0..<Screen.columnCount {
-//                    let pixel = screen[col, row] == 1 ? "⬜" : "⬛"
-//                    str += "\(pixel)"
-//                }
-//                print(str)
-//            }
-//            print("")
-        }
     }
 
     /**
