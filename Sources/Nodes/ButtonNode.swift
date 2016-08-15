@@ -11,12 +11,12 @@ import SpriteKit
 
 final class ButtonNode: SKNode {
     //MARK: Typealiases
-    typealias ButtonHandler = (button: ButtonNode) -> Void
+    typealias ButtonHandler = (ButtonNode) -> Void
 
     //MARK: Properties
     private let backgroundNode: SKShapeNode
     let textNode: SKLabelNode
-    private let handler: ButtonHandler
+    fileprivate let handler: ButtonHandler
 
     //MARK: Initialization
     init(withPosition position: CGPoint, size: CGSize, text: String, handler: ButtonHandler) {
@@ -76,7 +76,7 @@ extension ButtonNode {
 
             let location = touch.location(in: self)
             if self.contains(location) {
-                self.handler(button: self)
+                self.handler(self)
             }
         })
     }

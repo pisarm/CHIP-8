@@ -25,7 +25,7 @@ extension HUDScene where Self: SKScene {
 
         let position = CGPoint(x: frame.size.width/2, y: frame.size.height/2)
         let size = CGSize(width: 75, height: 40)
-        let handler: (button: ButtonNode) -> Void = { print("\($0)") }
+        let handler: (_ button: ButtonNode) -> Void = { print("\($0)") }
         let button = ButtonNode(withPosition: position, size: size, text: "Fisk", handler: handler)
         button.textNode.fontSize = 17.0
         button.zPosition = 15

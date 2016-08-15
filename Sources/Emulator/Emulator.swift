@@ -43,17 +43,17 @@ final class Emulator {
 
     //MARK: Internals
     //TODO: replace arrays with a fixed size arrays
-    private (set) var registers: [UInt8] = Array(repeating: 0, count: 16)
-    private (set) var index: Opcode.Address = 0x0
-    private (set) var pc: Opcode.Address = 0x200
-    private (set) var memory: [UInt8] = Array(repeating: 0, count: 4096)
+    fileprivate (set) var registers: [UInt8] = Array(repeating: 0, count: 16)
+    fileprivate (set) var index: Opcode.Address = 0x0
+    fileprivate (set) var pc: Opcode.Address = 0x200
+    fileprivate (set) var memory: [UInt8] = Array(repeating: 0, count: 4096)
     private (set) var opcode: Opcode.Address = 0x0
-    private (set) var stack: [Opcode.Address] = Array(repeating: 0, count: 16)
-    private (set) var sp: Opcode.Address = 0x0
-    private (set) var delayTimer: UInt8 = 0x0
-    private (set) var soundTimer: UInt8 = 0x0
-    private (set) var keypad = [Bool](repeating: false, count: 16)
-    private (set) var lastPressedKey: Key?
+    fileprivate (set) var stack: [Opcode.Address] = Array(repeating: 0, count: 16)
+    fileprivate (set) var sp: Opcode.Address = 0x0
+    fileprivate (set) var delayTimer: UInt8 = 0x0
+    fileprivate (set) var soundTimer: UInt8 = 0x0
+    fileprivate (set) var keypad = [Bool](repeating: false, count: 16)
+    fileprivate (set) var lastPressedKey: Key?
     let screen = Screen()
 
     // See http://devernay.free.fr/hacks/chip8/C8TECH10.HTM
@@ -258,7 +258,7 @@ extension Emulator {
 
     /**
      */
-    private func timerTick() {
+    fileprivate func timerTick() {
         if delayTimer > 0 {
             delayTimer -= 1
         }
@@ -282,11 +282,11 @@ extension Emulator {
 
 extension Emulator {
     //MARK: Helpers
-    private func incrementPC() {
+    fileprivate func incrementPC() {
         pc += 2
     }
 
-    private func draw(x: Opcode.Register, y: Opcode.Register, rows: Opcode.Constant) {
+    fileprivate func draw(x: Opcode.Register, y: Opcode.Register, rows: Opcode.Constant) {
         let startX = Int(registers[Int(x)])
         let startY = Int(registers[Int(y)])
 

@@ -11,7 +11,7 @@ import SpriteKit
 import UIKit
 
 final class ScreenScene: SKScene, HUDScene {
-    private var pixels: [SKSpriteNode] = []
+    fileprivate var pixels: [SKSpriteNode] = []
 
     //MARK: Initialization
     override init(size: CGSize) {

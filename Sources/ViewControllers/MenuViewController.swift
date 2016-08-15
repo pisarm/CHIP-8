@@ -46,7 +46,7 @@ final class MenuViewController: UIViewController {
 
     }()
 
-    private let controller: AppController
+    fileprivate let controller: AppController
 
     //MARK: Initialization
     init(withController controller: AppController) {

@@ -11,10 +11,10 @@ import UIKit
 
 final class AppController {
     //MARK: Properties
-    private let window: UIWindow
+    fileprivate let window: UIWindow
 
     //MARK: View controllers
-    private lazy var menuViewController: MenuViewController = {
+    fileprivate lazy var menuViewController: MenuViewController = {
         let viewController = MenuViewController(withController: self)
 
         return viewController
