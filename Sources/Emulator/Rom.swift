@@ -8,21 +8,18 @@
 
 import Foundation
 
-final class Rom {
+struct Rom {
     //MARK: Properties
+    let name: String
     let bytes: [UInt8]
 
     //MARK: Initialization
-    init(data: NSData) {
+    init(name: String, data: NSData) {
+        self.name = name
+        
         let bytesPtr = unsafeBitCast(data.bytes, to: UnsafePointer<UInt8>.self)
         let bytesBufferPtr = UnsafeBufferPointer(start: bytesPtr, count: data.length)
         self.bytes = [UInt8](bytesBufferPtr)
-
-//        findKeys()
-    }
-
-    init(bytes: [UInt8]) {
-        self.bytes = bytes
 
 //        findKeys()
     }
@@ -62,3 +59,14 @@ final class Rom {
 
      */
 }
+
+//extension Rom {
+//    static func loadAll() throws -> [Rom] {
+//        let bundleUrl = Bundle(for: self.dynamicType).bundleURL
+//
+//            let urls = try FileManager.default.contentsOfDirectory(at: bundleUrl, includingPropertiesForKeys: [], options: [])
+//            let romUrls = urls.filter { $0.pathExtension == "ch8" }
+//            let romData = try romUrls.map { try Data(contentsOf: $0) }
+//            return romData.map { Rom(data: $0) }
+//    }
+//}
