@@ -10,18 +10,36 @@ import Foundation
 import SpriteKit
 
 final class ButtonNode: SKNode {
+    //MARK:
+    fileprivate enum ButtonState {
+        case active
+        case inactive
+    }
+
     //MARK: Typealiases
     typealias ButtonHandler = (ButtonNode) -> Void
 
     //MARK: Properties
+
     private let backgroundNode: SKShapeNode
     let textNode: SKLabelNode
     fileprivate let handler: ButtonHandler
+    fileprivate var state: ButtonState {
+        didSet {
+            switch state {
+            case .active:
+                run(SKAction.scale(to: 0.8, duration: 0.09))
+            case .inactive:
+                run(SKAction.scale(to: 1.0, duration: 0.09))
+            }
+        }
+    }
 
     //MARK: Initialization
     init(withPosition position: CGPoint, size: CGSize, text: String, handler: ButtonHandler) {
         (self.backgroundNode, self.textNode) = ButtonNode.commonInit(size: size, text: text)
         self.handler = handler
+        self.state = .inactive
 
         super.init()
 
@@ -53,31 +71,36 @@ final class ButtonNode: SKNode {
 extension ButtonNode {
     //MARK: Touches
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        textNode.run(SKAction.scale(to: 0.9, duration: 0.09))
+        state = .active
     }
 
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let touch = touches.first else {
+        guard let touch = touches.first, let scene = scene else {
             return
         }
 
-        let location = touch.location(in: self)
-        if !contains(location) {
-            textNode.run(SKAction.scale(to: 1.0, duration: 0.06))
+        let location = touch.location(in: scene)
+
+        if !contains(location ) {
+            state = .inactive
         }
     }
 
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        //FIXME: This is not working according to plan
-        textNode.run(SKAction.scale(to: 1.0, duration: 0.06), completion: {
-            guard let touch = touches.first else {
-                return
-            }
+        guard let touch = touches.first, let scene = scene else {
+            return
+        }
 
-            let location = touch.location(in: self)
-            if self.contains(location) {
-                self.handler(self)
-            }
-        })
+        let location = touch.location(in: scene)
+
+        if contains(location ) {
+            handler(self)
+        }
+
+        state = .inactive
+    }
+
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        state = .inactive
     }
 }
