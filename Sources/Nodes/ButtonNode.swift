@@ -10,16 +10,16 @@ import Foundation
 import SpriteKit
 
 final class ButtonNode: SKNode {
-    //MARK:
+    ///MARK:
     fileprivate enum ButtonState {
         case active
         case inactive
     }
 
-    //MARK: Typealiases
-    typealias ButtonHandler = (ButtonNode) -> Void
+    ///MARK: Typealiases
+    typealias ButtonHandler = @escaping (ButtonNode) -> Void
 
-    //MARK: Properties
+    ///MARK: Properties
 
     private let backgroundNode: SKShapeNode
     let textNode: SKLabelNode
@@ -35,8 +35,8 @@ final class ButtonNode: SKNode {
         }
     }
 
-    //MARK: Initialization
-    init(withPosition position: CGPoint, size: CGSize, text: String, handler: ButtonHandler) {
+    ///MARK: Initialization
+    init(with position: CGPoint, size: CGSize, text: String, handler: ButtonHandler) {
         (self.backgroundNode, self.textNode) = ButtonNode.commonInit(size: size, text: text)
         self.handler = handler
         self.state = .inactive
@@ -54,7 +54,7 @@ final class ButtonNode: SKNode {
         fatalError("init(coder:) has not been implemented")
     }
 
-    //MARK: Setup
+    ///MARK: Setup
     private static func commonInit(size: CGSize, text: String) -> (SKShapeNode, SKLabelNode) {
         let backgroundNode = SKShapeNode(rectOf: size)
         backgroundNode.fillColor = .purple
@@ -69,7 +69,7 @@ final class ButtonNode: SKNode {
 }
 
 extension ButtonNode {
-    //MARK: Touches
+    ///MARK: Touches
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         state = .active
     }

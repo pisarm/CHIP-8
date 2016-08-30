@@ -10,13 +10,13 @@ import XCTest
 @testable import CHIP_8
 
 final class RawOpcodeTests: XCTestCase {
-    //MARK: Setup
+    ///MARK: Setup
     let test: (UInt16) -> Void = {
         let opcode = Opcode(rawOpcode: $0)
         XCTAssertEqual(opcode!.rawOpcode, $0)
     }
 
-    //MARK: Test
+    ///MARK: Test
     func testClearScreen() {
         test(0x00E0)
     }

@@ -10,7 +10,7 @@ import XCTest
 @testable import CHIP_8
 
 final class EmulatorTests: XCTestCase {
-    //MARK: Tests
+    ///MARK: Tests
     func testCallProgram() {
         XCTFail()
     }
@@ -139,7 +139,7 @@ final class EmulatorTests: XCTestCase {
 }
 
 extension EmulatorTests {
-    //MARK: Helpers
+    ///MARK: Helpers
 
     func emulate(bytes: [UInt8]) -> Emulator {
         let rom = Rom(bytes: bytes)

@@ -10,10 +10,10 @@ import XCTest
 @testable import CHIP_8
 
 final class RomTests: XCTestCase {
-    //MARK: Properties
+    ///MARK: Properties
     let bytes: [UInt8] = [0x67, 0x22]
 
-    //MARK: Tests
+    ///MARK: Tests
     func testInitData() {
         let data = NSData(bytes: bytes, length: bytes.count)
         let rom = Rom(data: data)

@@ -9,7 +9,7 @@
 import Foundation
 
 protocol EmulatorDelegate: class {
-    func beep()
+    func beep()    
 }
 
 final class Emulator {
@@ -19,7 +19,6 @@ final class Emulator {
 
     //Should run at 50Hz
     private lazy var tickTimer: Timer = Timer(interval: .milliseconds(20), handler: { [weak self] in self?.timerTick() })
-
 
     // See http://devernay.free.fr/hacks/chip8/C8TECH10.HTM#keyboard
     enum Key: UInt8 {
@@ -41,7 +40,7 @@ final class Emulator {
         case F = 0xF
     }
 
-    //MARK: Internals
+    ///MARK: Internals
     //TODO: replace arrays with a fixed size arrays
     fileprivate (set) var registers: [UInt8] = Array(repeating: 0, count: 16)
     fileprivate (set) var index: Opcode.Address = 0x0
@@ -76,8 +75,8 @@ final class Emulator {
         0xF0, 0x80, 0xF0, 0x80, 0x80, // F
     ]
 
-    //MARK: Init
-    init(rom: Rom) {
+    ///MARK: Init
+    init(with rom: Rom) {
         memory.replaceSubrange(Int(pc)..<Int(pc) + rom.bytes.count, with: rom.bytes)
     }
 
@@ -93,7 +92,7 @@ final class Emulator {
 }
 
 extension Emulator {
-    //MARK: Emulation
+    ///MARK: Emulation
     public func cycle() {
         let rawOpcode = (Opcode.Address(memory[Int(pc)]) << 8) | (Opcode.Address(memory[Int(pc) + 1]))
         guard let opcode = Opcode(rawOpcode: rawOpcode) else {
@@ -281,7 +280,7 @@ extension Emulator {
 }
 
 extension Emulator {
-    //MARK: Helpers
+    ///MARK: Helpers
     fileprivate func incrementPC() {
         pc += 2
     }

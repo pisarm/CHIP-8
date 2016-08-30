@@ -10,11 +10,15 @@ import Foundation
 import SpriteKit
 import UIKit
 
-final class ScreenScene: SKScene, HUDScene {
+final class ScreenScene: SKScene, HUD {
+    ///MARK: Properties
+    private let coordinator: SceneCoordinator
     fileprivate var pixels: [SKSpriteNode] = []
 
-    //MARK: Initialization
-    override init(size: CGSize) {
+    ///MARK: Initialization
+    init(with size: CGSize, coordinator: SceneCoordinator) {
+        self.coordinator = coordinator
+
         super.init(size: size)
 
         setupHUD()
@@ -25,9 +29,9 @@ final class ScreenScene: SKScene, HUDScene {
         fatalError("init(coder:) has not been implemented")
     }
 
-    //MARK: Setup
+    ///MARK: Setup
     private func setupHUD() {
-        add(element: .upperRight)
+        add(element: .button(handler: { [weak self] _ in self?.coordinator.showPause()  }), location: .topRight, text: "Back")
     }
 
     private func setupScreen() {
@@ -57,7 +61,7 @@ final class ScreenScene: SKScene, HUDScene {
 }
 
 extension ScreenScene: ScreenDelegate {
-    //MARK: ScreenDelegate
+    ///MARK: ScreenDelegate
     func refreshed(index: Int, withValue: Int) {
         pixels[index].color = withValue == 0 ? .black : .white
     }

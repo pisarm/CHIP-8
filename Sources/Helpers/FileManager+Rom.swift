@@ -13,7 +13,10 @@ extension FileManager {
     func loadRoms() throws -> [Rom] {
         return try contentsOfDirectory(at: Bundle.main.bundleURL, includingPropertiesForKeys: [], options: [])
             .filter { $0.pathExtension == "ch8" }
-            .map { Rom(name: $0.lastPathComponent, data: NSData(contentsOf: $0)!) }
+            .map {
+                let name = $0.lastPathComponent.substring(to: $0.lastPathComponent.characters.index(of: ".")!)
+                return Rom(name: name, data: NSData(contentsOf: $0)!)
+        }
     }
-    
+
 }

@@ -14,7 +14,7 @@ protocol ScreenDelegate: class {
 }
 
 final class Screen {
-    //MARK: Properties
+    ///MARK: Properties
     static let columnCount = 64
     static let rowCount = 32
 
@@ -22,7 +22,7 @@ final class Screen {
 
     private var pixels: [UInt8]
 
-    //MARK: Initialization
+    ///MARK: Initialization
     init() {
         (pixels) = Screen.commonInit()
     }

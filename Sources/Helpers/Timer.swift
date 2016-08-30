@@ -9,10 +9,10 @@
 import Foundation
 
 final class Timer {
-    //MARK: Typealiases
+    ///MARK: Typealiases
     public typealias DispatchHandler = () -> Void
 
-    //MARK: Properties
+    ///MARK: Properties
     public var interval: DispatchTimeInterval {
         didSet {
             self.cancel()
@@ -26,7 +26,7 @@ final class Timer {
     private var timer: DispatchSourceTimer
     private let queue: DispatchQueue
 
-    //MARK: Initialization
+    ///MARK: Initialization
     /**
      Creates a timer which tick at a given interval.
 
@@ -64,7 +64,7 @@ final class Timer {
         return (timer)
     }
 
-    //MARK: Interaction
+    ///MARK: Interaction
     func resume() {
         guard !isRunning else {
             return

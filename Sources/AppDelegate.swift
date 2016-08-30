@@ -10,15 +10,15 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    //MARK: Properties
+    ///MARK: Properties
     var window: UIWindow?
-    var controller: AppController?
+    var coordinator: AppCoordinator?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         window = UIWindow()
         window!.makeKeyAndVisible()
 
-        controller = AppController(withWindow: window!)
+        coordinator = AppCoordinator(with: window!)
 
         return true
     }

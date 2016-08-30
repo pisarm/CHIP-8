@@ -9,14 +9,14 @@
 import Foundation
 
 struct Rom {
-    //MARK: Properties
+    ///MARK: Properties
     let name: String
     let bytes: [UInt8]
 
-    //MARK: Initialization
+    ///MARK: Initialization
     init(name: String, data: NSData) {
         self.name = name
-        
+
         let bytesPtr = unsafeBitCast(data.bytes, to: UnsafePointer<UInt8>.self)
         let bytesBufferPtr = UnsafeBufferPointer(start: bytesPtr, count: data.length)
         self.bytes = [UInt8](bytesBufferPtr)

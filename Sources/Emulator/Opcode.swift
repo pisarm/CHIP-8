@@ -9,7 +9,7 @@
 import Foundation
 
 enum Opcode {
-    //MARK: Typealiases
+    ///MARK: Typealiases
     typealias Address = UInt16
     typealias Register = UInt8
     typealias Constant = UInt8
@@ -520,7 +520,7 @@ enum Opcode {
 }
 
 extension Opcode: Comparable {
-    //MARK: Comparable
+    ///MARK: Comparable
     static func == (lhs: Opcode, rhs: Opcode) -> Bool {
         return lhs.rawOpcode == rhs.rawOpcode
     }

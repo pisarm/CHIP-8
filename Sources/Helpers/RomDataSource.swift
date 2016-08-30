@@ -29,7 +29,7 @@ final class RomDataSource: NSObject {
 }
 
 extension RomDataSource: UICollectionViewDataSource {
-    //MARK: UICollectionViewDataSource
+    ///MARK: UICollectionViewDataSource
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
@@ -39,9 +39,11 @@ extension RomDataSource: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .purple
-
+        let rom = self[indexPath]
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RomCell.identifier, for: indexPath) as! RomCell
+        cell.backgroundColor = .clear
+        cell.name = rom.name
         return cell
     }
+
 }
