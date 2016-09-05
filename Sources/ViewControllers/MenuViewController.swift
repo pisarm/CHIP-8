@@ -50,7 +50,7 @@ final class MenuViewController: UIViewController {
     fileprivate let coordinator: AppCoordinator
 
     ///MARK: Initialization
-    init(with coordinator: AppCoordinator){
+    init(with coordinator: AppCoordinator) {
         self.coordinator = coordinator
 
         super.init(nibName: nil, bundle: nil)
