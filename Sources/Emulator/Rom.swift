@@ -15,13 +15,18 @@ struct Rom {
 
     ///MARK: Initialization
     init(name: String, data: NSData) {
-        self.name = name
-
         let bytesPtr = unsafeBitCast(data.bytes, to: UnsafePointer<UInt8>.self)
         let bytesBufferPtr = UnsafeBufferPointer(start: bytesPtr, count: data.length)
-        self.bytes = [UInt8](bytesBufferPtr)
 
-//        findKeys()
+        self.init(name: name, bytes: [UInt8](bytesBufferPtr))
+
+    }
+
+    init(name: String, bytes: [UInt8]) {
+        self.name = name
+        self.bytes = bytes
+
+        //        findKeys()
     }
 
 //    private func findKeys() {
@@ -52,7 +57,7 @@ struct Rom {
     //TODO: expose which keys are used in a particular ROM - scan through opcodes and look for EX9E, FX0A and EXA1 ?? so the view can signal to the user which keys are actually active in a given ROM
 
     /*
-     
+
      Iterate over bytes
      grab a pair of bytes in every iteration
      if they match the above - find out what value the referenced register has at the time (perhaps run some part(full?) emulation?)

@@ -142,8 +142,8 @@ extension EmulatorTests {
     ///MARK: Helpers
 
     func emulate(bytes: [UInt8]) -> Emulator {
-        let rom = Rom(bytes: bytes)
-        let emulator = Emulator(rom: rom)
+        let rom = Rom(name: "dummy", bytes: bytes)
+        let emulator = Emulator(with: rom)
 
         var count = bytes.count / 2
         while count > 0 {

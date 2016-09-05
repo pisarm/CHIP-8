@@ -16,12 +16,12 @@ final class RomTests: XCTestCase {
     ///MARK: Tests
     func testInitData() {
         let data = NSData(bytes: bytes, length: bytes.count)
-        let rom = Rom(data: data)
+        let rom = Rom(name: "dummy", data: data)
         XCTAssertEqual(rom.bytes, bytes)
     }
 
     func testInitBytes() {
-        let rom = Rom(bytes: bytes)
+        let rom = Rom(name: "dummy", bytes: bytes)
         XCTAssertEqual(rom.bytes, bytes)
     }
 }
