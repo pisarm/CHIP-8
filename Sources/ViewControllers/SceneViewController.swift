@@ -14,6 +14,7 @@ protocol SceneCoordinator {
     func showPause()
     func showEmulator()
     func showMenu()
+    func resetEmulator()
 }
 
 class SceneViewController: UIViewController {
@@ -77,5 +78,9 @@ extension SceneViewController: SceneCoordinator {
     func showMenu() {
         emulator.suspend()
         coordinator.showMenu()
+    }
+    
+    func resetEmulator() {
+        //TODO: add this
     }
 }
