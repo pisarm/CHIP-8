@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import UIKit
 
-final class ScreenScene: SKScene, HUD {
+final class ScreenScene: SKScene, SceneOverlay {
     ///MARK: Properties
     private let coordinator: SceneCoordinator
     fileprivate var pixels: [SKSpriteNode] = []
@@ -21,7 +21,7 @@ final class ScreenScene: SKScene, HUD {
 
         super.init(size: size)
 
-        setupHUD()
+        setupOverlay()
         setupScreen()
     }
 
@@ -30,8 +30,8 @@ final class ScreenScene: SKScene, HUD {
     }
 
     ///MARK: Setup
-    private func setupHUD() {
-        add(element: .button(handler: { [weak self] _ in self?.coordinator.showPause()  }), location: .topRight, text: "Back")
+    private func setupOverlay() {
+        add(.button(action: { [weak self] _ in self?.coordinator.showPause() }, text: "Pause"), at: .topRight)
     }
 
     private func setupScreen() {

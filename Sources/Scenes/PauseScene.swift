@@ -9,7 +9,7 @@
 import Foundation
 import SpriteKit
 
-class PauseScene: SKScene, HUD {
+class PauseScene: SKScene, SceneOverlay {
     ///MARK: Properties
     private let coordinator: SceneCoordinator
 
@@ -19,7 +19,7 @@ class PauseScene: SKScene, HUD {
 
         super.init(size: size)
 
-        setupHUD()
+        setupOverlay()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -27,9 +27,13 @@ class PauseScene: SKScene, HUD {
     }
 
     ///MARK: Setup
-    private func setupHUD() {
-        add(element: .label, location: .top, text: "Paused")
-        add(element: .button(handler: { [weak self] _ in self?.coordinator.showEmulator() }), location: .topRight, text: "Resume")
-        add(element: .button(handler: { [unowned self] _ in self.coordinator.showMenu() }), location: .bottomRight, text: "Quit")
+    private func setupOverlay() {
+        let buttons: [SceneOverlayType.ElementType] = [
+            .button(action: { [weak self] _ in self?.coordinator.showEmulator() }, text: "Resume"),
+            .button(action: { [weak self] _ in self?.coordinator.resetEmulator() }, text: "Reset"),
+            .button(action: { [weak self] _ in self?.coordinator.showMenu() }, text: "Quit")
+        ]
+        add(buttons, at: .topRight)
+        add(.label(text: "Paused"), at: .top)
     }
 }

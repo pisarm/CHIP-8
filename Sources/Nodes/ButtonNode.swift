@@ -17,13 +17,13 @@ final class ButtonNode: SKNode {
     }
 
     ///MARK: Typealiases
-    typealias ButtonHandler = @escaping (ButtonNode) -> Void
+    typealias ButtonAction = @escaping (ButtonNode) -> Void
 
     ///MARK: Properties
 
     private let backgroundNode: SKShapeNode
     let textNode: SKLabelNode
-    fileprivate let handler: ButtonHandler
+    fileprivate let action: ButtonAction
     fileprivate var state: ButtonState {
         didSet {
             switch state {
@@ -36,9 +36,9 @@ final class ButtonNode: SKNode {
     }
 
     ///MARK: Initialization
-    init(with position: CGPoint, size: CGSize, text: String, handler: ButtonHandler) {
+    init(with position: CGPoint, size: CGSize, text: String, action: ButtonAction) {
         (self.backgroundNode, self.textNode) = ButtonNode.commonInit(size: size, text: text)
-        self.handler = handler
+        self.action = action
         self.state = .inactive
 
         super.init()
@@ -94,7 +94,7 @@ extension ButtonNode {
         let location = touch.location(in: scene)
 
         if contains(location ) {
-            handler(self)
+            action(self)
         }
 
         state = .inactive
