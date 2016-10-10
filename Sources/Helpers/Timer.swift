@@ -54,6 +54,15 @@ final class Timer {
         (self.timer) = Timer.commonInit(queue: queue, interval: interval, handler: handler)
     }
 
+    deinit {
+        // This is done because a DispatchSourceTimer cannot be cancelled if 
+        // it is suspended!
+        if !isRunning {
+            timer.resume()
+        }
+        timer.cancel()
+    }
+
     private static func commonInit(queue: DispatchQueue, interval: DispatchTimeInterval, handler: @escaping DispatchHandler) -> (DispatchSourceTimer) {
         let timer = DispatchSource.makeTimerSource(queue: queue)
         timer.scheduleRepeating(deadline: .now(), interval: interval)

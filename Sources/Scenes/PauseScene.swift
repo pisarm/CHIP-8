@@ -11,7 +11,7 @@ import SpriteKit
 
 class PauseScene: SKScene, SceneOverlay {
     ///MARK: Properties
-    private let coordinator: SceneCoordinator
+    private weak var coordinator: SceneCoordinator?
 
     ///MARK: Initialization
     init(with size: CGSize, coordinator: SceneCoordinator) {
@@ -29,9 +29,9 @@ class PauseScene: SKScene, SceneOverlay {
     ///MARK: Setup
     private func setupOverlay() {
         let buttons: [SceneOverlayType.ElementType] = [
-            .button(action: { [weak self] _ in self?.coordinator.showEmulator() }, text: "Resume"),
-            .button(action: { [weak self] _ in self?.coordinator.resetEmulator() }, text: "Reset"),
-            .button(action: { [weak self] _ in self?.coordinator.showMenu() }, text: "Quit")
+            .button(action: { [weak self] _ in self?.coordinator?.showEmulator() }, text: "Resume"),
+            .button(action: { [weak self] _ in self?.coordinator?.resetEmulator() }, text: "Reset"),
+            .button(action: { [weak self] _ in self?.coordinator?.showMenu() }, text: "Quit")
         ]
         add(buttons, at: .topRight)
         add(.label(text: "Paused"), at: .top)

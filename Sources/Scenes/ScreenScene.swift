@@ -12,7 +12,7 @@ import UIKit
 
 final class ScreenScene: SKScene, SceneOverlay {
     ///MARK: Properties
-    private let coordinator: SceneCoordinator
+    private weak var coordinator: SceneCoordinator?
     fileprivate var pixels: [SKSpriteNode] = []
 
     ///MARK: Initialization
@@ -31,7 +31,7 @@ final class ScreenScene: SKScene, SceneOverlay {
 
     ///MARK: Setup
     private func setupOverlay() {
-        add(.button(action: { [weak self] _ in self?.coordinator.showPause() }, text: "Pause"), at: .topRight)
+        add(.button(action: { [weak self] _ in self?.coordinator?.showPause() }, text: "Pause"), at: .topRight)
     }
 
     private func setupScreen() {

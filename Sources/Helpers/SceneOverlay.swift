@@ -9,7 +9,6 @@
 import Foundation
 import SpriteKit
 
-
 struct SceneOverlayElement {
     let elementType: SceneOverlayType.ElementType
     let location: SceneOverlayType.Location

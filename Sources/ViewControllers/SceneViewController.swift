@@ -10,7 +10,7 @@ import Foundation
 import SpriteKit
 import UIKit
 
-protocol SceneCoordinator {
+protocol SceneCoordinator: class {
     func showPause()
     func showEmulator()
     func showMenu()
@@ -27,8 +27,8 @@ class SceneViewController: UIViewController {
         return skView
     }()
 
-    fileprivate lazy var screenScene: ScreenScene = ScreenScene(with: self.view.bounds.size, coordinator: self)
-    fileprivate lazy var pauseScene: PauseScene = PauseScene(with: self.view.bounds.size, coordinator: self)
+    fileprivate lazy var screenScene: ScreenScene? = ScreenScene(with: self.view.bounds.size, coordinator: self)
+    fileprivate lazy var pauseScene: PauseScene? = PauseScene(with: self.view.bounds.size, coordinator: self)
     fileprivate let emulator: Emulator
     fileprivate let coordinator: AppCoordinator
 
@@ -65,18 +65,20 @@ extension SceneViewController: SceneCoordinator {
     ///MARK: SceneCoordinator
     func showEmulator() {
         skView.presentScene(screenScene)
-        screenScene.isPaused = false
+        screenScene?.isPaused = false
         emulator.resume()
     }
 
     func showPause() {
         emulator.suspend()
-        screenScene.isPaused = true
+        screenScene?.isPaused = true
         skView.presentScene(pauseScene)
     }
 
     func showMenu() {
         emulator.suspend()
+        screenScene = nil
+        pauseScene = nil
         coordinator.showMenu()
     }
     

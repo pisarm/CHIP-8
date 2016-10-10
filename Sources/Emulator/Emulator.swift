@@ -80,6 +80,11 @@ final class Emulator {
         memory.replaceSubrange(Int(pc)..<Int(pc) + rom.bytes.count, with: rom.bytes)
     }
 
+    deinit {
+        cycleTimer.cancel()
+        tickTimer.cancel()
+    }
+
     func resume() {
         cycleTimer.resume()
         tickTimer.resume()
