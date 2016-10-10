@@ -17,7 +17,7 @@ final class ButtonNode: SKNode {
     }
 
     ///MARK: Typealiases
-    typealias ButtonAction = @escaping (ButtonNode) -> Void
+    typealias ButtonAction = (ButtonNode) -> Void
 
     ///MARK: Properties
 
@@ -36,7 +36,7 @@ final class ButtonNode: SKNode {
     }
 
     ///MARK: Initialization
-    init(with position: CGPoint, size: CGSize, text: String, action: ButtonAction) {
+    init(with position: CGPoint, size: CGSize, text: String, action: @escaping ButtonAction) {
         (self.backgroundNode, self.textNode) = ButtonNode.commonInit(size: size, text: text)
         self.action = action
         self.state = .inactive

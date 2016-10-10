@@ -46,7 +46,7 @@ final class Timer {
      - parameter interval: Interval at which the timer should tick
      - parameter handler: Closure evaluated every tick of the timer
      */
-    init(queue: DispatchQueue = DispatchQueue.global(qos: .default), interval: DispatchTimeInterval, handler: DispatchHandler) {
+    init(queue: DispatchQueue = DispatchQueue.global(qos: .default), interval: DispatchTimeInterval, handler: @escaping DispatchHandler) {
         self.queue = queue
         self.interval = interval
         self.handler = handler
@@ -54,7 +54,7 @@ final class Timer {
         (self.timer) = Timer.commonInit(queue: queue, interval: interval, handler: handler)
     }
 
-    private static func commonInit(queue: DispatchQueue, interval: DispatchTimeInterval, handler: DispatchHandler) -> (DispatchSourceTimer) {
+    private static func commonInit(queue: DispatchQueue, interval: DispatchTimeInterval, handler: @escaping DispatchHandler) -> (DispatchSourceTimer) {
         let timer = DispatchSource.makeTimerSource(queue: queue)
         timer.scheduleRepeating(deadline: .now(), interval: interval)
         timer.setEventHandler(qos: DispatchQoS.default, flags: [.enforceQoS]) {
